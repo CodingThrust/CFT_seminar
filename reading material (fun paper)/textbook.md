@@ -1,0 +1,3 @@
+1. Main textbook: [Applied Conformal Field Theory](https://arxiv.org/pdf/hep-th/9108028) by Paul Ginsparg: A bottom-up way to learn CFT
+2. Important reference: [Tensor networks, quantum spin chains, and quantum field theory](https://uwspace.uwaterloo.ca/items/584177f2-31fa-4354-9ea2-118ad8fc5708) PhD thesis by Yijian Zou: using Periodic uniform MPS to extract all conformal data. A top-down way to learn CFT
+3. [Conformal Field Theory](https://link.springer.com/book/10.1007/978-1-4612-2256-9) by Philippe Francesco , Pierre Mathieu , David Sénéchal: need more background on field theory
