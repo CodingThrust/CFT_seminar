@@ -12,3 +12,5 @@
 
 // Include chapters
 #include "chapters/ch1.typ"
+#include "chapters/ch2.typ"
+#include "chapters/ch3.typ"
