@@ -4,45 +4,214 @@
 
 These lectures are based on the CFT seminars in HKUST(gz) from March to July.
 
-== Why do we care Conformal Field Theory?
+== Motivation: Why do we care about Conformal Field Theory?
 
-Nowadays, we know that our world are composed by elementary particles, like quarks, photons, electrons, etc, quarks and gluons composed protons and netrons, together with electrons are the building block of nucleus. What is amazing in Quantum field theory is that these elementary particles are described by the irreducible representations of the symmetry group of Minikovski space-time, that is how quantum theory is combined with special relativity. Quantum field theory is a huge success such that almost all phenomons observed by human in nature can be described by this theory. However, people find that many problems in QFT are very hard to solve, and only a few models are exactly solvable, they may caused by more symmetries in this system. One pheonmon in statistical physics is the critical phenomena, which tells us that at critical point, our systerm will have infinte correlation lenth, which means the sysmtem is scale invariant.
+Nowadays, we know that our world is composed of elementary particles, such as quarks, photons, and electrons. Quarks and gluons compose protons and neutrons, which together with electrons are the building blocks of nuclei. What is amazing in quantum field theory (QFT) is that these elementary particles are described by the irreducible representations of the symmetry group of Minkowski space-time; that is how quantum theory is combined with special relativity. QFT is such a huge success that almost all phenomena observed by humans in nature can be described by this theory. However, people find that many problems in QFT are very hard to solve (need to do Feymann diagram), and only a few models are exactly solvable which is caused by additional symmetries in the system. 
 
-In 1970s, what surprised thing Alexander Polyakov find is that critical systems will have more symmetry than scale invariant(also Poincaré group), called conformal symmetry. The most well known physical model -- Ising model whose 2D version has a phase transition from ordered phase(ferromagnetic) to disordered phase(paramagnetic), and at the critical point(also called the self-dual point if you are familiar with Ising model), the system has conformal symmetry, and the theory is well understood, now is called Ising CFT.
+*Renormalization group and CFT as fixed points.* A central concept in modern QFT is the _renormalization group_ (RG). When we study a quantum field theory, we inevitably encounter divergences at short distances (ultraviolet, UV). The Wilsonian picture of the RG tells us that we should "integrate out" the high-energy (short-distance) degrees of freedom and study how the effective theory flows as we change the energy scale. This flow is described by the beta function $beta(g)$ of the coupling constants. A QFT is said to be _UV complete_ if it is well-defined at arbitrarily high energies, meaning the RG flow has a well-defined starting point in the UV. The fixed points of the RG flow --- where $beta(g^*) = 0$ --- are precisely scale-invariant theories, and under mild assumptions (unitarity, Poincaré invariance, and a discrete spectrum), scale invariance is enhanced to conformal invariance. In other words, CFTs are the fixed points of the renormalization group flow, and any QFT can be viewed as a flow between two CFTs: a UV CFT at short distances and an IR CFT at long distances. This perspective makes CFT a cornerstone of the modern understanding of QFT: classifying CFTs amounts to classifying the possible endpoints of RG flows.
 
-== Conforaml symmetries in $d$-dimension
+*Condensed matter, statistical physics, and quantum information.* CFT also plays an essential role in condensed matter theory (CMT) and statistical physics. Many systems in condensed matter --- such as quantum magnets, superfluids, and quantum Hall systems --- undergo continuous (second-order) phase transitions. Near such a transition, the correlation length $xi$ diverges, microscopic details become irrelevant, and the system is described by a small number of universal quantities: the critical exponents. This remarkable phenomenon is called _universality_, and the universal data are precisely captured by the underlying CFT at the critical point. For example, the critical exponents of the 3D Ising model have been determined to extraordinary precision using the conformal bootstrap program. In the 1970s, the surprising thing Alexander Polyakov found is that critical systems possess more symmetry than just scale invariance (and the Poincaré group), called conformal symmetry. The most well-known physical model --- the Ising model --- whose 2D version has a phase transition from the ordered phase (ferromagnetic) to the disordered phase (paramagnetic), and at the critical point (also called the self-dual point if you are familiar with the Ising model), the system has conformal symmetry. The theory is well understood and is now called the Ising CFT.
 
-First let me introduce the formal definition of conformal transformation and explore the structure of the conformal group. We consider the space $bold(R)^d$ with flat Riemannian metric $g_(mu nu)$, $g_(mu nu)=d i a g(1,-1,dots,-1)$ if it is Minikovski space and $g_(mu nu)=d i a g(1,1,dots,1)$ if it is Euclidean space, the Riemannian metric tells us how to measure the infinitesimal distance: $d s^2 = g_(mu nu) d x^mu d x^nu$. A coordinate transformation $x arrow x^prime = x^prime (x) $ changes the original metric to a new metric with respect to the new coordinate system: 
+Beyond equilibrium phase transitions, CFT has deep connections to quantum information theory: in $(1+1)$-dimensional critical systems, the entanglement entropy of a subsystem of length $ell$ scales as $S_A = frac(c,3) ln(ell / a)$, where $c$ is the central charge of the CFT and $a$ is a UV cutoff. This logarithmic scaling is a universal signature of criticality and has become a standard diagnostic tool in quantum many-body physics. More broadly, the structure of CFT underlies the classification of gapless quantum phases and topological order through the bulk-boundary correspondence, making it indispensable in modern condensed matter and quantum information research.
+
+== Conformal symmetries in $d$-dimension
+
+First let me introduce the formal definition of conformal transformation and explore the structure of the conformal group. We consider the space $bold(R)^d$ with a flat Riemannian metric $g_(mu nu)$: $g_(mu nu)=d i a g(1,-1,dots,-1)$ if it is Minkowski space and $g_(mu nu)="diag"(1,1,dots,1)$ if it is Euclidean space. The Riemannian metric tells us how to measure the infinitesimal distance:
+
+$ d s^2 = g_(mu nu) d x^mu d x^nu. $
+
+A coordinate transformation $x arrow x^prime = x^prime (x) $ changes the original metric to a new metric with respect to the new coordinate system: 
 
 $ g_(mu nu) (x) arrow g_(mu nu)^prime (x^prime) = frac(partial x^alpha, partial x^(prime mu)) frac(partial x^beta, partial x^(prime nu)) g_(alpha beta) (x), $ 
 
-this formula can be derived through the chain rule: the distance at point $x$ is $ d s^2 = g_(alpha beta) (x) d x^(alpha) d x^(beta) = g_(alpha beta) (x) frac(partial x^alpha, partial x^(prime mu)) frac(partial x^beta, partial x^(prime nu)) d x^(prime mu) d x^(prime nu). $ A conformal transformation is a coordinate transformation that preserves the Riemannian metric up to a scale factor, that is 
-$ g_(mu nu)^prime (x^prime) prop Omega(x) g_(mu nu) (x), $ <ConformalCondition> 
-where $Omega(x)$ is a function of the coordinate $x$, we can see that the Poincaré transformations are the subset of the conformal transformations with the metric invariant. Note that conformal transformation preserves angles, recall the definition of the angle between two vectors $frac(v dot w,sqrt(v dot v) sqrt(w dot w))$.
+this formula can be derived through the chain rule: the distance at point $x$ is
 
-All conformal transformations composed a group called Conformal group, which is a Lie group. In physics, it is instructive to study the infinitesimal generator of the conformal group, now considering a infinitesimal coordinate transformation $x^mu arrow x^mu + epsilon^mu (x)$, under this transformation, we can derive the new metric tensor as follows: 
+$ d s^2 = g_(alpha beta) (x) d x^(alpha) d x^(beta) = g_(alpha beta) (x) frac(partial x^alpha, partial x^(prime mu)) frac(partial x^beta, partial x^(prime nu)) d x^(prime mu) d x^(prime nu). $
+
+A conformal transformation is a coordinate transformation that preserves the Riemannian metric up to a scale factor, that is 
+$ g_(mu nu)^prime (x^prime) prop Omega(x) g_(mu nu) (x), $ <ConformalCondition> 
+where $Omega(x)$ is a function of the coordinate $x$. We can see that Poincaré transformations are a subset of the conformal transformations with the metric left invariant. Note that a conformal transformation preserves angles; recall the definition of the angle between two vectors: $frac(v dot w,sqrt(v dot v) sqrt(w dot w))$.
+
+All conformal transformations form a group called the conformal group, which is a Lie group. In physics, it is instructive to study the infinitesimal generators of the conformal group. Now consider an infinitesimal coordinate transformation $x^mu arrow x^mu + epsilon^mu (x)$; under this transformation, we can derive the new metric tensor as follows: 
 
 $ g^prime_(mu nu)(x^prime) &=frac(partial x^alpha, partial x^(prime mu)) frac(partial x^beta, partial x^(prime nu)) g_(alpha beta) (x) = frac(partial (x^(prime alpha)-epsilon^(alpha)),partial x^(prime mu) ) frac(partial (x^(prime beta)-epsilon^(beta)), partial x^(prime nu)) g_(alpha beta) (x)\ &= (delta^alpha_(mu) - frac(partial  epsilon^(alpha),partial x^(prime mu) ))dot (delta^beta_(nu) - frac(partial  epsilon^(beta),partial x^(prime nu) ))g_(alpha beta) (x) \ &= delta^alpha_(mu)delta^beta_(nu)g_(alpha beta) (x) - frac(partial  delta^alpha_mu g_(alpha beta) epsilon^(beta),partial x^(prime nu) ) -  frac(partial delta^beta_nu g_(alpha beta) epsilon^(alpha),partial x^(prime mu) ) +o(abs(epsilon)^2) \ &= g_(mu nu)(x) - (partial_nu epsilon_mu + partial_mu epsilon_nu). $
 
-To satisfy the condition @ConformalCondition, we need $ partial_nu epsilon_mu + partial_mu epsilon_nu = lambda g_(mu nu)(x)$, using $g^(mu nu)(x)$ to contract both sides, we get 
+To satisfy the condition @ConformalCondition, we need
+
+$ partial_nu epsilon_mu + partial_mu epsilon_nu = lambda g_(mu nu)(x), $
+
+and using $g^(mu nu)(x)$ to contract both sides, we get 
 
 $ g^(mu nu)(partial_nu epsilon_mu + partial_mu epsilon_nu) = partial_nu epsilon^nu + partial_mu epsilon^mu = 2 partial dot epsilon, lambda g^(mu nu) g_(mu nu) = d dot lambda arrow.double lambda = frac(2,d) partial dot epsilon. $  
 
-So that we have $Omega(x) = 1+frac(2,d) partial dot epsilon $, and $ partial_mu epsilon_nu+partial_nu epsilon_mu = frac(2,d) (partial dot epsilon) g_(mu nu). $ <eq6> Next we will study the explicit form of conformal transformations in $d$ dimension, taking the derivative on both sides of @eq6, we get: 
+So that we have $Omega(x) = 1+frac(2,d) partial dot epsilon $, and
 
-$ partial_rho (partial_mu epsilon_nu+partial_nu epsilon_mu) &= frac(2,d) partial_rho (partial dot epsilon g_(mu nu)),\ partial_rho partial_mu epsilon_nu + partial_rho partial_nu epsilon_mu &= frac(2,d) g_(mu nu) partial_rho (partial dot epsilon) + frac(2,d) (partial dot epsilon)  partial_rho g_(mu nu)=frac(2,d) g_(mu nu) partial_rho (partial dot epsilon), $ <eq7> permute the indices we get: $ partial_nu partial_rho epsilon_mu + partial_mu partial_rho epsilon_nu = frac(2,d) g_(rho mu) partial_nu (partial dot epsilon), $ $ partial_mu partial_nu epsilon_rho + partial_nu partial_mu epsilon_rho = frac(2,d) g_(nu rho) partial_mu (partial dot epsilon). $ <eq9> 
+$ partial_mu epsilon_nu+partial_nu epsilon_mu = frac(2,d) (partial dot epsilon) g_(mu nu). $ <eq6>
 
-Note that the second derivative operator is symmetric, @eq9 becomes $ 2partial_mu partial_nu epsilon_rho = frac(2,d) g_(nu rho) partial_mu (partial dot epsilon), $and also the second formula of @eq7 becomes: $ partial_nu partial_rho epsilon_mu + partial_mu partial_rho epsilon_nu = frac(2,d) g_(mu nu) partial_rho (partial dot epsilon). $ $(10)+(8)-(11)$ gives $ 2partial_mu partial_nu epsilon_rho = frac(2,d) g_(rho mu) partial_nu (partial dot epsilon)+frac(2,d) g_(nu rho) partial_mu (partial dot epsilon)-frac(2,d) g_(mu nu) partial_rho (partial dot epsilon), $ <eq12> using $g^(mu nu)$ to contract @eq12, we get $ 2partial^2 epsilon_rho &= frac(2,d)g_rho^nu partial_nu (partial dot epsilon) + frac(2,d)g_rho^mu partial_mu (partial dot epsilon) - 2 partial rho(partial dot epsilon)\ & arrow.double   partial^2 epsilon_rho = (frac(2,d)-1)partial_rho (partial dot epsilon), $ also you can write it as $ partial^2 epsilon_mu = (frac(2,d)-1)partial_mu (partial dot epsilon), $ <eq14> take $partial_nu$ on both sides of @eq14, and take $partial^2$ on both sides of @eq6, we get: $ &partial^2 partial_nu epsilon_mu = (frac(2,d)-1)partial_nu partial_mu (partial dot epsilon),\ &partial^2 partial_mu epsilon_nu+partial^2 partial_nu epsilon_mu = frac(2,d)g_(mu nu)partial^2 (partial dot epsilon), $<eq15> @eq15 gives us: $ g_(mu nu)partial^2(partial dot epsilon) = (2-d)partial_mu partial_nu (partial dot epsilon), $<eq16>use $g^(mu nu)$ to contract both sides, we have other formula: $ (d-1)partial^2 (partial dot epsilon)=0. $<eq17> For $d=1$, the above equations impose no constraint on the transformation, so that any smmoth transformations are conformal in one dimension. And $d=2$ is a very special case which we will mainly focus on it, and we will come back to this case later. For $d>2$ cases, from @eq17 and @eq16 we can see that $partial_mu partial_nu (partial dot epsilon) = 0$, which means $partial dot epsilon$ is at most linear in the coordinates, so that we can write: $ partial dot epsilon = A + B_mu x^mu, $<eq18> subsititue @eq18 into @eq12 we get $ partial_mu partial_nu epsilon_rho = frac(1,d)(g_(rho mu)B_nu+g_(nu rho)B_mu-g_(mu nu)B_rho), $ which means every second order derivative $partial_mu partial_nu epsilon_rho$ is a constant, so $epsilon_mu$ is at most quadratic in the coordinates, and the general form of $epsilon_mu$ is $ epsilon_mu = a_mu + c_(mu nu) x^nu + f_(mu nu rho)x^nu x^rho #text[where]quad f_(mu nu rho) = f_(mu rho nu) . $<eq20> First, we look at the zeroth order in $x$, i.e., $a_mu$ terms, obviously there are no constraints in these terms, i.e., $a_mu$ are free variables, these correspond to ordinary translations independent of $x$. Now focusing on the linear terms, substituing @eq20 into @eq6, after doing derivative, linear terms become constant terms, and these constant terms should satisfy: $ c_(mu nu)+c_(nu mu) = frac(2,d)c^rho""_rho g_(mu nu), $ viewing $c_(mu nu)$ as a matrix, this shows when $mu eq.not nu$, we have $c_(mu nu) = -c_(nu mu)$, when $mu = nu$, we have $c_(mu mu) = alpha g_(mu mu), $ where $alpha$ is a constant so that we can decompose $c_(mu nu)$ into the sum of pure trace part and antisymmetric part: $ c_(mu nu) = alpha g_(mu nu) +m_(mu nu),  $ and $m_(mu nu) = -m_(nu mu)$, and the pure trace part correspond to dilation, the anti-symmetric part correspond to rotation. Finally, substituing the quadratic terms $epsilon_mu = f_(mu nu rho)x^nu x^rho$ into @eq12, we get the left hand side is: $ partial_mu partial_nu epsilon_rho &= partial_mu partial_nu f_(rho mu^prime nu^prime)x^(mu^prime) x^(nu^prime) = partial_mu (f_(rho mu^prime nu^prime)delta^(mu^prime)_nu x^(nu^prime)+f_(rho mu^prime nu^prime)delta^(nu^prime)_nu x^(mu^prime)) \ &= f_(rho mu^prime nu^prime)delta^(mu^prime)_nu delta^(nu^prime)_mu+f_(rho mu^prime nu^prime)delta^(nu^prime)_nu delta^(mu^prime)_mu = 2 f_(rho mu nu),  $ and the right hand side is:$ frac(1,d)g_(rho mu)partial_nu (partial_sigma epsilon^sigma) &= frac(1,d)g_(rho mu)partial_nu (partial_sigma f^sigma""_(mu^prime nu^prime)x^(mu^prime) x^(nu^prime))= frac(1,d)g_(rho mu)partial_nu (f^sigma""_(mu^prime nu^prime)delta^(mu^prime)_(sigma)x^(nu^prime)+f^sigma""_(mu^prime nu^prime)delta^(nu^prime)_(sigma)x^(mu^prime))\ &=frac(1,d)g_(rho mu)(f^sigma""_(mu^prime nu^prime)delta^(mu^prime)_(sigma)delta^(nu^prime)_(nu)+f^sigma""_(mu^prime nu^prime)delta^(nu^prime)_(sigma)delta^(mu^prime)_nu) = frac(2,d)g_(rho mu)f^sigma""_(sigma nu), $ so that we have $ f_(rho mu nu) = g_(rho mu)b_nu + g_(nu rho)b_mu - g_(mu nu)b_rho #text[where]quad b_mu equiv frac(1,d)c^sigma""_(sigma mu), $ or you can permute the indices and get: $ f_(mu nu rho) = g_(rho mu)b_nu + g_(mu nu)b_rho - g_(nu rho)b_mu. $ In this case, we can simplify the form of $epsilon_mu$: $ epsilon_mu&= f_(mu nu rho)x^nu x^rho = g_(rho mu)b_nu x^nu x^rho + g_(mu nu)b_rho x^nu x^rho - g_(nu rho)b_mu x^nu x^rho\ &=x_mu b_nu x^nu+x_mu b_rho x^rho - b_mu x_nu x_rho,  $ so that the corresponding infinitesimal transoformation is: $ x^(prime mu) = x^mu + 2(bold(x dot b))x^mu - b^mu bold(x)^2, $ which is call the _special conformal transformation_(SCT), the finite form for this transformation is: $ x^mu \u{27FC} frac(x^mu - b^mu bold(x)^2,1-2bold(b)dot bold(x) +bold(b)^2 bold(x)^2), $ an elegant way to see how the SCTs are derived is to decompse it into inversions and translations, actually, SCT = Inversion $compose$ Translation $compose$ Inversion: #math.equation(numbering: none, block: true)[
+Next we will study the explicit form of conformal transformations in $d$ dimensions. Taking the derivative on both sides of @eq6, we get:
+
+$ partial_rho (partial_mu epsilon_nu+partial_nu epsilon_mu) &= frac(2,d) partial_rho (partial dot epsilon g_(mu nu)),\ partial_rho partial_mu epsilon_nu + partial_rho partial_nu epsilon_mu &= frac(2,d) g_(mu nu) partial_rho (partial dot epsilon) + frac(2,d) (partial dot epsilon)  partial_rho g_(mu nu)=frac(2,d) g_(mu nu) partial_rho (partial dot epsilon), $ <eq7>
+
+Permuting the indices, we get:
+
+$ partial_nu partial_rho epsilon_mu + partial_mu partial_rho epsilon_nu = frac(2,d) g_(rho mu) partial_nu (partial dot epsilon), $
+
+$ partial_mu partial_nu epsilon_rho + partial_nu partial_mu epsilon_rho = frac(2,d) g_(nu rho) partial_mu (partial dot epsilon). $ <eq9>
+
+Note that the second derivative operator is symmetric; @eq9 becomes
+
+$ 2partial_mu partial_nu epsilon_rho = frac(2,d) g_(nu rho) partial_mu (partial dot epsilon), $
+
+and also the second formula of @eq7 becomes:
+
+$ partial_nu partial_rho epsilon_mu + partial_mu partial_rho epsilon_nu = frac(2,d) g_(mu nu) partial_rho (partial dot epsilon). $
+
+$(10)+(8)-(11)$ gives
+
+$ 2partial_mu partial_nu epsilon_rho = frac(2,d) g_(rho mu) partial_nu (partial dot epsilon)+frac(2,d) g_(nu rho) partial_mu (partial dot epsilon)-frac(2,d) g_(mu nu) partial_rho (partial dot epsilon), $ <eq12>
+
+Using $g^(mu nu)$ to contract @eq12, we get
+
+$ 2partial^2 epsilon_rho &= frac(2,d)g_rho^nu partial_nu (partial dot epsilon) + frac(2,d)g_rho^mu partial_mu (partial dot epsilon) - 2 partial rho(partial dot epsilon)\ & arrow.double   partial^2 epsilon_rho = (frac(2,d)-1)partial_rho (partial dot epsilon), $
+
+which can also be written as
+
+$ partial^2 epsilon_mu = (frac(2,d)-1)partial_mu (partial dot epsilon). $ <eq14>
+
+Taking $partial_nu$ on both sides of @eq14, and taking $partial^2$ on both sides of @eq6, we get:
+
+$ &partial^2 partial_nu epsilon_mu = (frac(2,d)-1)partial_nu partial_mu (partial dot epsilon),\ &partial^2 partial_mu epsilon_nu+partial^2 partial_nu epsilon_mu = frac(2,d)g_(mu nu)partial^2 (partial dot epsilon). $<eq15>
+
+@eq15 gives us:
+
+$ g_(mu nu)partial^2(partial dot epsilon) = (2-d)partial_mu partial_nu (partial dot epsilon), $<eq16>
+
+Using $g^(mu nu)$ to contract both sides, we have another formula:
+
+$ (d-1)partial^2 (partial dot epsilon)=0. $<eq17>
+
+For $d=1$, the above equations impose no constraint on the transformation, so that any smooth transformations are conformal in one dimension. The case $d=2$ is very special, which we will mainly focus on, and we will come back to it later. For $d>2$, from @eq17 and @eq16 we can see that $partial_mu partial_nu (partial dot epsilon) = 0$, which means $partial dot epsilon$ is at most linear in the coordinates, so that we can write:
+
+$ partial dot epsilon = A + B_mu x^mu, $<eq18>
+
+Substituting @eq18 into @eq12, we get
+
+$ partial_mu partial_nu epsilon_rho = frac(1,d)(g_(rho mu)B_nu+g_(nu rho)B_mu-g_(mu nu)B_rho), $
+
+which means every second-order derivative $partial_mu partial_nu epsilon_rho$ is a constant, so $epsilon_mu$ is at most quadratic in the coordinates, and the general form of $epsilon_mu$ is
+
+$ epsilon_mu = a_mu + c_(mu nu) x^nu + f_(mu nu rho)x^nu x^rho #text[where]quad f_(mu nu rho) = f_(mu rho nu) . $<eq20>
+
+First, we look at the zeroth order in $x$, i.e., the $a_mu$ terms. Obviously there are no constraints on these terms, i.e., $a_mu$ are free variables; they correspond to ordinary translations independent of $x$. Now focusing on the linear terms, substituting @eq20 into @eq6, after taking derivatives the linear terms become constant terms, and these constant terms should satisfy:
+
+$ c_(mu nu)+c_(nu mu) = frac(2,d)c^rho""_rho g_(mu nu). $
+
+Viewing $c_(mu nu)$ as a matrix, this shows that when $mu eq.not nu$, we have $c_(mu nu) = -c_(nu mu)$; when $mu = nu$, we have $c_(mu mu) = alpha g_(mu mu)$, where $alpha$ is a constant. Thus we can decompose $c_(mu nu)$ into the sum of a pure trace part and an antisymmetric part:
+
+$ c_(mu nu) = alpha g_(mu nu) +m_(mu nu),  $
+
+where $m_(mu nu) = -m_(nu mu)$. The pure trace part corresponds to dilation, and the antisymmetric part corresponds to rotation. Finally, substituting the quadratic terms $epsilon_mu = f_(mu nu rho)x^nu x^rho$ into @eq12, the left-hand side is:
+
+$ partial_mu partial_nu epsilon_rho &= partial_mu partial_nu f_(rho mu^prime nu^prime)x^(mu^prime) x^(nu^prime) = partial_mu (f_(rho mu^prime nu^prime)delta^(mu^prime)_nu x^(nu^prime)+f_(rho mu^prime nu^prime)delta^(nu^prime)_nu x^(mu^prime)) \ &= f_(rho mu^prime nu^prime)delta^(mu^prime)_nu delta^(nu^prime)_mu+f_(rho mu^prime nu^prime)delta^(nu^prime)_nu delta^(mu^prime)_mu = 2 f_(rho mu nu),  $
+
+and the right-hand side is:
+
+$ frac(1,d)g_(rho mu)partial_nu (partial_sigma epsilon^sigma) &= frac(1,d)g_(rho mu)partial_nu (partial_sigma f^sigma""_(mu^prime nu^prime)x^(mu^prime) x^(nu^prime))= frac(1,d)g_(rho mu)partial_nu (f^sigma""_(mu^prime nu^prime)delta^(mu^prime)_(sigma)x^(nu^prime)+f^sigma""_(mu^prime nu^prime)delta^(nu^prime)_(sigma)x^(mu^prime))\ &=frac(1,d)g_(rho mu)(f^sigma""_(mu^prime nu^prime)delta^(mu^prime)_(sigma)delta^(nu^prime)_(nu)+f^sigma""_(mu^prime nu^prime)delta^(nu^prime)_(sigma)delta^(mu^prime)_nu) = frac(2,d)g_(rho mu)f^sigma""_(sigma nu), $
+
+so that we have
+
+$ f_(rho mu nu) = g_(rho mu)b_nu + g_(nu rho)b_mu - g_(mu nu)b_rho #text[where]quad b_mu equiv frac(1,d)c^sigma""_(sigma mu), $
+
+or one can permute the indices and get:
+
+$ f_(mu nu rho) = g_(rho mu)b_nu + g_(mu nu)b_rho - g_(nu rho)b_mu. $
+
+In this case, we can simplify the form of $epsilon_mu$:
+
+$ epsilon_mu&= f_(mu nu rho)x^nu x^rho = g_(rho mu)b_nu x^nu x^rho + g_(mu nu)b_rho x^nu x^rho - g_(nu rho)b_mu x^nu x^rho\ &=x_mu b_nu x^nu+x_mu b_rho x^rho - b_mu x_nu x_rho,  $
+
+so that the corresponding infinitesimal transformation is:
+
+$ x^(prime mu) = x^mu + 2(bold(x dot b))x^mu - b^mu bold(x)^2, $
+
+which is called the _special conformal transformation_ (SCT). The finite form of this transformation is:
+
+$ x^mu \u{27FC} frac(x^mu - b^mu bold(x)^2,1-2bold(b)dot bold(x) +bold(b)^2 bold(x)^2). $
+
+An elegant way to see how the SCTs are derived is to decompose them into inversions and translations. In fact, SCT = Inversion $compose$ Translation $compose$ Inversion:
+#math.equation(numbering: none, block: true)[
   $  &"Inversion:" #h(100pt) x^mu \u{27FC} frac(x^mu,bold(x)^2)\ &"Translation:" #h(80pt) frac(x^mu,bold(x)^2) \u{27FC} frac(x^mu,bold(x)^2)-b^mu \ &"Inversion:" #h(10pt) frac(x^mu,bold(x)^2)-b^mu \u{27FC} frac(frac(x^mu,bold(x)^2)-b^mu,(frac(x^mu,bold(x)^2)-b^mu)(frac(x_mu,bold(x)^2)-b_mu)) = frac(x^mu - b^mu bold(x)^2,1-2bold(b)dot bold(x) +bold(b)^2 bold(x)^2)  $
 ]
+
 == Conformal symmetries in 2-dimension
-As we can see in the constraint equations in section 1.1, $d=2$ is very special case, which is our main focus in this seminar, and we also assume that $g_(mu nu) = delta_(mu nu)$, i.e., we are treating Euclidean space-time. Now the @eq6 becomes the famous Cauchy-Riemann equation: $ partial_1 epsilon_1 = partial_2 epsilon_2, quad partial_1 epsilon_2 = -partial_2 epsilon_1. $ So we introduce complex coordinates: $ z = x^1 + i x^2, quad overline(z) = x^1 - i x^2. $ Here we should mention that the global conformal transformations of the complex plan are entire functions, and you can prove that only linear functions satisfy the condition, when we expand the complex plane into $CC union \{infinity\}$, then the global conformal transformations are the so called Mobius transoformations which have the form: $ f(z) = frac(a z+b,c z+d) quad "with" quad a d-b c=1, $ where $a,b,c$ and $d$ are complex numbers, written $a,b,c,d$ as matrix we have $ A=mat(a,b;c,d)in S L(2;CC). $ It seems that the global conformal transoformations in 2D are very constrained, however, the local conformal symmetries have richer structure comparing to high dimensions, and from the physical viewpoint, local properties are more useful than the global properties. Now we will further study the structure of the local algebra of infinitesimal conformal transformations, they can be expressed as $ z^prime = z+epsilon(z)quad "where" epsilon(z) = sum_(-infinity)^infinity c_n z^(n+1), $ $epsilon(z)$ can be expressed as Laurent series confirm this infinitesimal transformation is conformal, now the effect of the transformation on a field $phi.alt(z,overline(z))$ is $ phi.alt^prime (z^prime,overline(z)^prime)= phi.alt(z,overline(z)) = phi.alt(z^prime,overline(z)^prime) - epsilon(z^prime)partial_(z^prime)phi.alt(z^prime,overline(z)^prime) - overline(epsilon)(overline(z)^prime)partial_(overline(z)^prime)phi.alt(z^prime,overline(z)^prime), $ we introduce the basis $ l_n = -z^(n+1)partial_z, quad overline(l)_n = -overline(z)^(n+1)partial_(overline(z)) $so that we have $ delta phi.alt = sum_n \{ c_n l_n phi.alt(z,overline(z))+ overline(c)_n overline(l)_n phi.alt(z,overline(z)) \}. $ These generators obey the following commutation relations: $  [l_n,l_m] = z^(n+1)partial_z (z^(m+1)partial_z) - z^(m+1)partial_z (z^(n+1)partial_z) = (n-m)l_(n+m),\ [overline(l)_n,overline(l)_m] = overline(z)^(n+1)partial_overline(z) (overline(z)^(m+1)partial_overline(z)) - overline(z)^(m+1)partial_overline(z) (overline(z)^(n+1)partial_overline(z)) = (n-m)l_(n+m),\ [l_n,overline(l)_m] = z^(n+1)partial_z (overline(z)^(m+1)partial_overline(z)) - overline(z)^(m+1)partial_overline(z) (z^(n+1)partial_z) = 0.  $ From the commutation rules we can see that the local conformal algebra is the direct sum of two isomorphic algebras $cal(A) plus.circle cal(overline(A))$, and it is called local because they are not well-defined globally in the extended complex plane. Now from the local conformal algebra we can learn more about the global conformal transformations, note that the holomorphic conformal transformations are generated by vector fields $ v(z) = - sum_n a_n l_n = sum_n a_n z^(n+1) partial_z, $ if it is well-defined globally, it means no singularity of $v(z)$ as $z arrow 0$, which needs $a_n eq.not 0$ only for $n gt.eq -1$, for demonstrating the behaviour of $v(z)$ as $z arrow infinity$, we perform the transformation $z = -frac(1,omega)$, then $ v(z) = sum_n a_n (-frac(1,omega))^(n+1) (frac(d z,d omega))^(-1)partial_omega = sum_n a_n (-frac(1,omega))^(n-1) partial_omega, $ no singularity as $omega arrow 0$ means $a_n eq.not 0$ only for $n lt.eq 1$. So that globally defined holomorphic conformal transformations are generated by $\{l_0,l_(-1),l_1\}$, and also the anti-holomorphic conformal transformations are generated by $\{overline(l)_0,overline(l)_(-1),overline(l)_1\}$. Moreover, $l_(-1) = -partial_z$ and $overline(l)_(-1) = -partial_overline(z)$ are the generators of the translation, $l_0 +overline(l)_0 = -z partial_z - overline(z)partial_(overline(z)) prop -x partial_x - y partial_y $ is the generator of dilation, $i (l_0 -overline(l)_0) prop y partial_x - x partial_y $ is the generator of rotation, and $l_1 =-z^2 partial_z, overline(l)_1 = -overline(z)^2 partial_overline(z) $ are the generators of special conformal transformations. 
+
+As we can see from the constraint equations in section 1.1, $d=2$ is a very special case, which is our main focus in this seminar. We also assume that $g_(mu nu) = delta_(mu nu)$, i.e., we are treating Euclidean space-time. Now @eq6 becomes the famous Cauchy--Riemann equations:
+
+$ partial_1 epsilon_1 = partial_2 epsilon_2, quad partial_1 epsilon_2 = -partial_2 epsilon_1. $
+
+So we introduce complex coordinates:
+
+$ z = x^1 + i x^2, quad overline(z) = x^1 - i x^2. $
+
+Here we should mention that the global conformal transformations of the complex plane are entire functions, and one can prove that only linear functions satisfy the condition. When we extend the complex plane to $CC union \{infinity\}$, the global conformal transformations are the so-called Möbius transformations, which have the form:
+
+$ f(z) = frac(a z+b,c z+d) quad "with" quad a d-b c=1, $
+
+where $a,b,c$ and $d$ are complex numbers. Written as a matrix, we have
+
+$ A=mat(a,b;c,d)in S L(2;CC). $
+
+It seems that the global conformal transformations in 2D are very constrained; however, the local conformal symmetries have a much richer structure compared to higher dimensions, and from the physical viewpoint, local properties are more useful than global ones. Now we will further study the structure of the local algebra of infinitesimal conformal transformations. They can be expressed as
+
+$ z^prime = z+epsilon(z)quad "where" epsilon(z) = sum_(-infinity)^infinity c_n z^(n+1). $
+
+The fact that $epsilon(z)$ can be expressed as a Laurent series confirms that this infinitesimal transformation is conformal. The effect of the transformation on a field $phi.alt(z,overline(z))$ is
+
+$ phi.alt^prime (z^prime,overline(z)^prime)= phi.alt(z,overline(z)) = phi.alt(z^prime,overline(z)^prime) - epsilon(z^prime)partial_(z^prime)phi.alt(z^prime,overline(z)^prime) - overline(epsilon)(overline(z)^prime)partial_(overline(z)^prime)phi.alt(z^prime,overline(z)^prime). $
+
+We introduce the basis
+
+$ l_n = -z^(n+1)partial_z, quad overline(l)_n = -overline(z)^(n+1)partial_(overline(z)), $
+
+so that we have
+
+$ delta phi.alt = sum_n \{ c_n l_n phi.alt(z,overline(z))+ overline(c)_n overline(l)_n phi.alt(z,overline(z)) \}. $
+
+These generators obey the following commutation relations:
+
+$  [l_n,l_m] = z^(n+1)partial_z (z^(m+1)partial_z) - z^(m+1)partial_z (z^(n+1)partial_z) = (n-m)l_(n+m),\ [overline(l)_n,overline(l)_m] = overline(z)^(n+1)partial_overline(z) (overline(z)^(m+1)partial_overline(z)) - overline(z)^(m+1)partial_overline(z) (overline(z)^(n+1)partial_overline(z)) = (n-m)l_(n+m),\ [l_n,overline(l)_m] = z^(n+1)partial_z (overline(z)^(m+1)partial_overline(z)) - overline(z)^(m+1)partial_overline(z) (z^(n+1)partial_z) = 0.  $
+
+From the commutation rules we can see that the local conformal algebra is the direct sum of two isomorphic algebras $cal(A) plus.circle cal(overline(A))$, and it is called _local_ because the generators are not well-defined globally on the extended complex plane. From the local conformal algebra we can learn more about the global conformal transformations. Note that the holomorphic conformal transformations are generated by vector fields
+
+$ v(z) = - sum_n a_n l_n = sum_n a_n z^(n+1) partial_z. $
+
+If $v(z)$ is well-defined globally, it must have no singularity as $z arrow 0$, which requires $a_n eq.not 0$ only for $n gt.eq -1$. To examine the behaviour of $v(z)$ as $z arrow infinity$, we perform the transformation $z = -frac(1,omega)$:
+
+$ v(z) = sum_n a_n (-frac(1,omega))^(n+1) (frac(d z,d omega))^(-1)partial_omega = sum_n a_n (-frac(1,omega))^(n-1) partial_omega. $
+
+No singularity as $omega arrow 0$ means $a_n eq.not 0$ only for $n lt.eq 1$. Therefore, the globally defined holomorphic conformal transformations are generated by $\{l_0,l_(-1),l_1\}$, and likewise the anti-holomorphic ones are generated by $\{overline(l)_0,overline(l)_(-1),overline(l)_1\}$. Moreover, $l_(-1) = -partial_z$ and $overline(l)_(-1) = -partial_overline(z)$ are the generators of translations, $l_0 +overline(l)_0 = -z partial_z - overline(z)partial_(overline(z)) prop -x partial_x - y partial_y $ is the generator of dilation, $i (l_0 -overline(l)_0) prop y partial_x - x partial_y $ is the generator of rotation, and $l_1 =-z^2 partial_z, overline(l)_1 = -overline(z)^2 partial_overline(z) $ are the generators of special conformal transformations. 
 
 
 
 == Constraints of conformal invariance in $d$ dimension
 
-Now we come back to the case of an arbitrary number of dimensions $d= p+q$ and see how the conformal symmetries give us constraints on the $N$-point functions of a field theory. Recall the classical field theory, suppose we have an action $ cal(S) = integral d^d x cal(L)(Phi, partial_mu Phi), $ an active transformation affect both the postition and the fiedls: $ bold(x) \u{27FC} bold(x)^prime \ Phi(bold(x)) \u{27FC} Phi^prime (bold(x)^prime) $In theses transformations, the new position $bold(x)^prime$ is a function of $bold(x)$ and the new field $Phi^prime (bold(x)^prime)$ is a function of $Phi(bold(x))$, i.e., $Phi^prime (bold(x)^prime) = cal(F)(Phi(bold(x)))$ , under this transformation, the original action changes to $ cal(S)^prime &= integral d^d x^prime cal(L)(Phi^prime (bold(x)^prime), partial_mu^prime Phi(bold(x)^prime))\ &= integral d^d x^prime cal(L)(cal(F)(Phi (bold(x))), partial_mu^prime cal(F)(Phi (bold(x))))\ &= integral d^d x #h(3pt) abs(frac(partial bold(x)^prime,partial bold(x))) cal(L)(cal(F)(Phi (bold(x))),frac(partial x^nu,partial x^(prime mu)) partial_nu cal(F)(Phi (bold(x)))), $  where $abs(frac(partial bold(x)^prime,partial bold(x)))$ is the determinant of the Jacobian. In general, when we perfrom a transformation, like Lorentz transformation, we have the following form: $ x^(prime mu) = Lambda^mu_nu x^nu\ Phi(Lambda bold(x)) = L_Lambda Phi(bold(x)), $ $L$ forms a representation of the transformation group. From the representation theory, it is easier to study the infinitesimal generator first, i.e. the Lie algebra representation, and exponetial it into the group representation. If we suppose for the moment that the fields are unaffected by the transformation, i.e., $cal(F)(Phi) = Phi$, then the generators of the global conformal group are:
+Now we come back to the case of an arbitrary number of dimensions $d= p+q$ and see how conformal symmetries constrain the $N$-point functions of a field theory. Recall that in classical field theory, suppose we have an action
+
+$ cal(S) = integral d^d x cal(L)(Phi, partial_mu Phi). $
+
+An active transformation affects both the position and the fields:
+
+$ bold(x) \u{27FC} bold(x)^prime \ Phi(bold(x)) \u{27FC} Phi^prime (bold(x)^prime). $
+
+In these transformations, the new position $bold(x)^prime$ is a function of $bold(x)$ and the new field $Phi^prime (bold(x)^prime)$ is a function of $Phi(bold(x))$, i.e., $Phi^prime (bold(x)^prime) = cal(F)(Phi(bold(x)))$. Under this transformation, the original action changes to
+
+$ cal(S)^prime &= integral d^d x^prime cal(L)(Phi^prime (bold(x)^prime), partial_mu^prime Phi(bold(x)^prime))\ &= integral d^d x^prime cal(L)(cal(F)(Phi (bold(x))), partial_mu^prime cal(F)(Phi (bold(x))))\ &= integral d^d x #h(3pt) abs(frac(partial bold(x)^prime,partial bold(x))) cal(L)(cal(F)(Phi (bold(x))),frac(partial x^nu,partial x^(prime mu)) partial_nu cal(F)(Phi (bold(x)))), $
+
+where $abs(frac(partial bold(x)^prime,partial bold(x)))$ is the determinant of the Jacobian. In general, when we perform a transformation, such as a Lorentz transformation, we have the following form:
+
+$ x^(prime mu) = Lambda^mu_nu x^nu\ Phi(Lambda bold(x)) = L_Lambda Phi(bold(x)), $
+
+where $L$ forms a representation of the transformation group. From representation theory, it is easier to study the infinitesimal generators first, i.e., the Lie algebra representation, and exponentiate them into the group representation. If we suppose for the moment that the fields are unaffected by the transformation, i.e., $cal(F)(Phi) = Phi$, then the generators of the global conformal group are:
 #align(center)[
   $ #rect(
     width: 80%,
@@ -50,23 +219,123 @@ Now we come back to the case of an arbitrary number of dimensions $d= p+q$ and s
     stroke: 0.6pt + black,
   )[ #math.equation(numbering: none, block: true)[
  $ "(translation)"& #h(40pt) P_mu #h(8pt) = -i partial_mu\ "(dilation)"& #h(40pt) D #h(12pt) = -i x^mu partial_mu\ "(rotation)"& #h(40pt) L_(mu nu) = i(x_mu partial_nu - x_nu partial_mu)\ "(SCT)"& #h(40pt)K_mu #h(6.5pt) = -i(2 x_mu x^nu partial_nu - bold(x)^2 partial_mu) $]] $ ]
-And these generators satisfies the following commutation relations:
+And these generators satisfy the following commutation relations:
 $ [D,P_mu] = i P_mu\ [D,K_mu] = -i K_mu\ [K_mu,P_nu]=2i(g_(mu nu)D-L_(mu nu))\ [K_rho,L_(mu nu)]=i(g_(rho mu)K_nu-g_(rho nu)K_(mu))\ [P_rho,L_(mu nu)]=i(g_(rho mu)P_nu-g_(rho nu)P_(mu))\ [L_(mu nu),L_(rho sigma)] = i(g_(nu rho)L_(mu sigma)+g_(mu sigma)L_(nu rho)-g_(mu rho)L_(nu sigma)-g_(nu sigma)L_(mu rho)) $ <eq44>
-From the QFT, we already know a field transforming under Poincaré group, i.e., those transformations generated by $P_mu$ and $L_(mu nu)$, so that we need to characterize how $D$ and $K$ affect these fields. First, we consider the subgroup of Conformal group which leaves the point $x = 0$ invariant, i.e., those transformations generated by $L_(mu nu), K_mu$ and $D$ , and suppose we have $ L_(mu nu)Phi(0) = S_(mu nu)Phi(0),#h(3pt) D Phi(0) = tilde(Delta) Phi(0),#h(3pt) K_mu Phi(0) = kappa_mu Phi(0), $ then $S_(mu nu),tilde(Delta),kappa_mu$ forms a representation of the Conformal subalgebra, they also satisfies the commutation relation in @eq44, that is $ [tilde(Delta),S_(mu nu)] = 0,\ [tilde(Delta),kappa_(mu)] = -i kappa_mu,\ [kappa_nu,kappa_mu]=0,\ [kappa_rho,S_(mu nu)] = i(g_(rho mu)kappa_nu-g_(rho nu)kappa_mu),\ [S_(mu nu),S_(rho sigma)] = i(g_(nu rho)S_(mu sigma)+g_(mu sigma)S_(nu rho)-g_(mu rho)S_(nu sigma)-g_(nu sigma)S_(mu rho)). $ If we demand $S_(mu nu)$ are irreducible representations of the Lorentz group, then by Schur's lemma, any matrix that commutes with all $S_(mu nu)$ must be proportion to the identity, so that we have $ tilde(Delta) prop I quad arrow.double -i K_(mu) = 0. $ From this we can conclude that we can write $tilde(Delta) = -i Delta I$ and SCTs act trivially on field labels, non-trivially on spatial labels. After deriving the action at point $x=0$, how can we derive the general formula for arbitrary point $x$? This can be done by the so called Hausdorff formula: $ e^(-A)B e^(A) = B + [B,A]+ frac(1,2!)[[B,A],A]+frac(1,3!)[[[B,A],A],A]+ dots.h.c,  $ and $ e^(i x^mu P_mu)D e^(-i x^(mu)P_mu) &= D+ [D,-i x^mu P_mu]+ dots.h.c = D + x^mu P_mu, \ e^(i x^nu P_nu)K_mu e^(-i x^(nu)P_nu) &= K_mu+ [K_mu,-i x^nu P_nu] +frac(1,2!)[[K_mu,-i x^nu P_nu],-i x^nu P_nu]+ dots.h.c \ &= K_mu + 2 (g_(mu nu)x^nu D-L_(mu nu)x^nu) \ &= K_mu + 2x_mu D -2x^nu L_(mu nu) + 2 x_mu (x^nu P_nu) - bold(x)^2 P_mu,  $  so that the fields are transformed as: $ D #h(1pt) Phi(bold(x)) = (-i x^mu partial_mu+tilde(Delta))Phi(x)\ K_mu #h(1pt) Phi(bold(x)) = (kappa_mu + 2x_mu tilde(Delta) - 2x^nu S_(mu nu)- 2i x_mu x^nu partial_nu+ i bold(x)^2 partial_mu)Phi(bold(x)). $ Now suppose the field is spinless field, then a finite dilation act as follows: $ e^(i alpha D) phi.alt(bold(x)) = e^(alpha Delta) phi.alt(e^alpha bold(x)), $ if we identify $e^alpha = lambda$, then we have: $ bold(x) \u{27FC} lambda bold(x) \ phi.alt (bold(x)) \u{27FC} lambda^(Delta) phi.alt (bold(x)) $
+From QFT, we already know how a field transforms under the Poincaré group, i.e., those transformations generated by $P_mu$ and $L_(mu nu)$, so we need to characterize how $D$ and $K$ affect these fields. First, we consider the subgroup of the conformal group that leaves the point $x = 0$ invariant, i.e., those transformations generated by $L_(mu nu), K_mu$ and $D$, and suppose we have
 
-We can conclude that these fields under global conformal transformations, $x arrow x^prime$ transform according to $ phi.alt_j (bold(x)) arrow #h(3pt) abs(frac(partial bold(x)^prime,partial bold(x)))^(Delta_j /d) phi.alt_j (bold(x)^prime). $ A field transforming liked the above is called quasi-primary field, and for quasi-primary field the correlation functions satisfy: $ \u{27E8} phi.alt_1 (bold(x)_1) dots.h.c phi.alt_n (bold(x)_n) \u{27E9} = abs(frac(partial bold(x)^prime,partial bold(x)))^(Delta_1 /d)_(bold(x)=bold(x)_1) dots.h.c abs(frac(partial bold(x)^prime,partial bold(x)))^(Delta_n /d)_(bold(x) = bold(x)_n) \u{27E8} phi.alt_1 (bold(x)^prime_1) dots.h.c phi.alt_n (bold(x)^prime_n) \u{27E9} $ <eq54> this property imposes severe restrications on 2- and 3-point functions of quasi-primary field. First, if we specialize to scale transformation $bold(x) arrow lambda bold(x) $ we obtain $ \u{27E8} phi.alt_1 (bold(x)_1) phi.alt_2 (bold(x)_2) \u{27E9} = lambda^(Delta_1+Delta_2) \u{27E8} phi.alt_1 (lambda bold(x)_1) phi.alt_2 (lambda bold(x)_2) \u{27E9}, $<eq55> because in this case $abs(frac(partial bold(x)^prime,partial bold(x))) = lambda^d$, and the correaltion function are invariant under rotation and translation, translation invariance tells us that correaltion function should only depend on the differences $x_i -x_j$, and rotation invariance restricts it to $abs(bold(x)_1-bold(x)_2)$, so that we must have $ \u{27E8} phi.alt_1 (bold(x)_1) phi.alt_2 (bold(x)_2) \u{27E9} = f(abs(bold(x)_1-bold(x)_2)), $ combined with @eq55, invariance under dilation gives us: $ \u{27E8} phi.alt_1 (bold(x)_1) phi.alt_2 (bold(x)_2) \u{27E9} = frac(C_(12),abs(bold(x)_1-bold(x)_2)^(Delta_1+Delta_2)). $ The last restriction is from the special conformal transformations, remind that special conformal transformation has the form: $ x^mu \u{27FC} x^(prime mu)= frac(x^mu - b^mu bold(x)^2,1- 2bold(b)dot bold(x)+bold(b)^2 bold(x)^2), \ abs(frac(partial bold(x)^prime,partial bold(x))) = frac(1,(1-2 bold(b)dot bold(x)+ bold(b)^2 bold(x)^2)^d), $ so the @eq54 implies: $ frac(C_(12),abs(bold(x)_1-bold(x)_2)^(Delta_1+Delta_2)) = C_12/(gamma_1^(Delta_1)gamma_2^(Delta_2))frac((gamma_1 gamma_2)^frac(Delta_1 +Delta_2,2),abs(bold(x)_1-bold(x)_2)^(Delta_1+Delta_2)) quad "where" gamma_i = 1- 2bold(b)dot bold(x)_i +bold(b)^2 bold(x)_i^2. $ <eq59> The main difficulty for deriving @eq59 is to show $(bold(x)^prime_1 - bold(x)^prime_2)^2 = frac((bold(x)_1 - bold(x)_2)^2,gamma_1 gamma_2)$, so we show it explicitly $ bold(x)^prime_1 - bold(x)^prime_2 = frac((gamma_2 x_1^mu - gamma_2 b^mu bold(x)_1^2-gamma_1 x_2^mu+gamma_1 b^mu bold(x)_2^2),gamma_1 gamma_2),  $ let $beta^mu = gamma_2 x_1^mu - gamma_2 b^mu bold(x)_1^2-gamma_1 x_2^mu+gamma_1 b^mu bold(x)_2^2 $, then we want to compute $ (bold(x)^prime_1 - bold(x)^prime_2)^2 = frac(beta^mu beta_mu,gamma_1^2 gamma_2^2), $ $beta^mu beta_mu$ has 16 terms as follows: $ gamma_2^2 bold(x)_1^2 - gamma_2^2 (bold(b)dot bold(x)_1) bold(x)_1^2- gamma_1 gamma_2 bold(x)_1 dot bold(x)_2+ gamma_1 gamma_2 (bold(b)dot bold(x)_1) bold(x)_2^2, \ -gamma_2^2 (bold(b)dot bold(x)_1) bold(x)_1^2 + gamma_2^2 bold(b)^2 bold(x)_1^4 + gamma_1 gamma_2 (bold(b)dot bold(x)_2) bold(x)_1^2 - gamma_1 gamma_2 bold(b)^2 bold(x)_1^2 bold(x)_2^2,  \ -gamma_1 gamma_2  bold(x)_1 dot bold(x)_2 + gamma_1 gamma_2 (bold(b)dot bold(x)_2) bold(x)_1^2 + gamma_1^2 bold(x)_2^2- gamma_1^2  (bold(b)dot bold(x)_2) bold(x)_2^2, \ gamma_1 gamma_2 (bold(b)dot bold(x)_1) bold(x)_2^2 - gamma_1 gamma_2 bold(b)^2 bold(x)_1^2 bold(x)_2^2 - gamma_1^2 (bold(b)dot bold(x)_2) bold(x)_2^2 + gamma_1^2 bold(b)^2 bold(x)_2^4 . $ Note that $ 2 gamma_1 gamma_2 (bold(b)dot bold(x)_1) bold(x)_2^2 - gamma_1 gamma_2 bold(b)^2 bold(x)_1^2 bold(x)_2^2 &= gamma_1 gamma_2 bold(x)_2^2 -gamma_1 gamma_2 bold(x)_2^2(1-2 bold(b)dot bold(x)_1 +bold(b)^2 bold(x)_1^2)  \ &= gamma_1 gamma_2 bold(x)_2^2-gamma_1^2 gamma_2 bold(x)_2^2,\ 2 gamma_1 gamma_2 (bold(b)dot bold(x)_2) bold(x)_1^2 - gamma_1 gamma_2 bold(b)^2 bold(x)_1^2 bold(x)_2^2 &= gamma_1 gamma_2 bold(x)_1^2 -gamma_1 gamma_2 bold(x)_1^2(1-2 bold(b)dot bold(x)_2 +bold(b)^2 bold(x)_2^2)  \ &= gamma_1 gamma_2 bold(x)_1^2-gamma_1 gamma_2^2 bold(x)_1^2, $ so that $beta^mu beta_mu$ becomes $ &gamma_2^2 bold(x)_1^2 - gamma_2^2 (bold(b)dot bold(x)_1) bold(x)_1^2- gamma_1 gamma_2 bold(x)_1 dot bold(x)_2-gamma_2^2 (bold(b)dot bold(x)_1) bold(x)_1^2 + gamma_2^2 bold(b)^2 bold(x)_1^4 \ & - gamma_1 gamma_2  bold(x)_1 dot bold(x)_2  + gamma_1^2 bold(x)_2^2- gamma_1^2  (bold(b)dot bold(x)_2) bold(x)_2^2- gamma_1^2 (bold(b)dot bold(x)_2) bold(x)_2^2 + gamma_1^2 bold(b)^2 bold(x)_2^4 \ & + gamma_1 gamma_2 bold(x)_2^2-gamma_1^2 gamma_2 bold(x)_2^2+gamma_1 gamma_2 bold(x)_1^2-gamma_1 gamma_2^2 bold(x)_1^2 \ =  &(gamma_1 gamma_2 bold(x)_1^2+ gamma_1 gamma_2 bold(x)_2^2 - 2 gamma_1 gamma_2 bold(x)_1 bold(x)_2)  + (gamma_2^2 bold(x)_1^2-gamma_1 gamma_2^2 bold(x)_1^2 - 2gamma_2^2 (bold(b)dot bold(x)_1)bold(x)_1^2+gamma_2^2bold(b)^2bold(x)_1^4 ) \ + & (gamma_1^2 bold(x)_2^2-gamma_1^2 gamma_2 bold(x)_2^2 - 2gamma_1^2 (bold(b)dot bold(x)_2)bold(x)_2^2+gamma_1^2bold(b)^2bold(x)_2^4 ), $ and notice that $ gamma_1 gamma_2 bold(x)_1^2+ gamma_1 gamma_2 bold(x)_2^2 - 2 gamma_1 gamma_2 bold(x)_1 bold(x)_2 = gamma_1 gamma_2 (bold(x)_1 - bold(x)_2)^2, \ gamma_2^2 bold(x)_1^2-gamma_1 gamma_2^2 bold(x)_1^2 = gamma_2^2 bold(x)_1^2(1-gamma_1) = 2gamma_2^2 (bold(b)dot bold(x)_1)bold(x)_1^2-gamma_2^2bold(b)^2bold(x)_1^4,\ gamma_1^2 bold(x)_2^2-gamma_1^2 gamma_2 bold(x)_2^2 = gamma_1^2 bold(x)_2^2(1-gamma_2) = 2gamma_1^2 (bold(b)dot bold(x)_2)bold(x)_2^2 - gamma_1^2bold(b)^2bold(x)_2^4, $ finally we proved that $beta^mu beta_mu = gamma_1 gamma_2 (bold(x)_1 - bold(x)_2)^2$ and $(bold(x)^prime_1 - bold(x)^prime_2)^2 = frac((bold(x)_1 - bold(x)_2)^2,gamma_1 gamma_2)$ .  
+$ L_(mu nu)Phi(0) = S_(mu nu)Phi(0),#h(3pt) D Phi(0) = tilde(Delta) Phi(0),#h(3pt) K_mu Phi(0) = kappa_mu Phi(0). $
 
-The constraint @eq59 is satisfied only if $Delta_1 = Delta_2$. In other wards, two quasi-primary fields are correlated only if they have the same scaling dimesion: $ \u{27E8} phi.alt_1 (bold(x)_1) phi.alt_2 (bold(x)_2) \u{27E9} = cases(frac(C_(12),abs(bold(x)_1-bold(x)_2)^(2 Delta_1))quad &"if" quad Delta_1 = Delta_2 ,0 quad &"if" quad Delta_1 eq.not Delta_2 ) $And the 3-point function is similarly restricted. Invariance under translations,rotations, and dilatations requires $ \u{27E8} phi.alt_1 (bold(x)_1) phi.alt_2 (bold(x)_2)  phi.alt_3 (bold(x)_3) \u{27E9} = sum_(a,b,c) frac(C_(a b c),abs(bold(x)_1-bold(x)_2)^a abs(bold(x)_2-bold(x)_3)^b abs(bold(x)_1-bold(x)_3)^c), $ and the summation over $a,b,c$ is restricted such that $a+b+c = Delta_1 + Delta_2+Delta_3$, and special conformal transformations require $a=Delta_1 + Delta_2 -Delta_3, #h(2pt) b = Delta_2 +Delta_3 -Delta_1,#h(2pt) c=Delta_3+Delta_1 -Delta_2. $ Thus, we get the final form of the 3-point correaltion function: $  \u{27E8} phi.alt_1 (bold(x)_1) phi.alt_2 (bold(x)_2)  phi.alt_3 (bold(x)_3) \u{27E9} = frac(C_(a b c),abs(bold(x)_1-bold(x)_2)^(Delta_1 + Delta_2 -Delta_3) abs(bold(x)_2-bold(x)_3)^(Delta_2 +Delta_3 -Delta_1) abs(bold(x)_1-bold(x)_3)^(Delta_3+Delta_1 -Delta_2)) $ However, only 2-point and 3-point correlation functions have these neat forms, in general, $n$-point function will depend on the cross-ratio: $frac(r_(i j)r_(k l),r_(i k )r_(j l))$, for example, the 4-point correaltion function may take the following form: $ \u{27E8} phi.alt_1 (bold(x)_1) dots.h.c  phi.alt_4 (bold(x)_4)  \u{27E9} = f(frac(r_12 r_34,r_13 r_24),frac(r_12 r_34,r_23 r_14)) product_(i<j)^4 r_(i j)^(Delta/3 -Delta_i -Delta_j) quad "where" Delta = sum_(i=1)^4 Delta_i. $
+Then $S_(mu nu),tilde(Delta),kappa_mu$ form a representation of the conformal subalgebra; they also satisfy the commutation relations in @eq44, namely
+
+$ [tilde(Delta),S_(mu nu)] = 0,\ [tilde(Delta),kappa_(mu)] = -i kappa_mu,\ [kappa_nu,kappa_mu]=0,\ [kappa_rho,S_(mu nu)] = i(g_(rho mu)kappa_nu-g_(rho nu)kappa_mu),\ [S_(mu nu),S_(rho sigma)] = i(g_(nu rho)S_(mu sigma)+g_(mu sigma)S_(nu rho)-g_(mu rho)S_(nu sigma)-g_(nu sigma)S_(mu rho)). $
+
+If we demand that $S_(mu nu)$ are irreducible representations of the Lorentz group, then by Schur's lemma, any matrix that commutes with all $S_(mu nu)$ must be proportional to the identity, so that we have
+
+$ tilde(Delta) prop I quad arrow.double -i K_(mu) = 0. $
+
+From this we can conclude that $tilde(Delta) = -i Delta I$ and that SCTs act trivially on field labels but non-trivially on spatial labels. After deriving the action at point $x=0$, how can we derive the general formula for an arbitrary point $x$? This can be done by the so-called Hausdorff formula:
+
+$ e^(-A)B e^(A) = B + [B,A]+ frac(1,2!)[[B,A],A]+frac(1,3!)[[[B,A],A],A]+ dots.h.c,  $
+
+and
+
+$ e^(i x^mu P_mu)D e^(-i x^(mu)P_mu) &= D+ [D,-i x^mu P_mu]+ dots.h.c = D + x^mu P_mu, \ e^(i x^nu P_nu)K_mu e^(-i x^(nu)P_nu) &= K_mu+ [K_mu,-i x^nu P_nu] +frac(1,2!)[[K_mu,-i x^nu P_nu],-i x^nu P_nu]+ dots.h.c \ &= K_mu + 2 (g_(mu nu)x^nu D-L_(mu nu)x^nu) \ &= K_mu + 2x_mu D -2x^nu L_(mu nu) + 2 x_mu (x^nu P_nu) - bold(x)^2 P_mu,  $
+
+so that the fields transform as:
+
+$ D #h(1pt) Phi(bold(x)) = (-i x^mu partial_mu+tilde(Delta))Phi(x)\ K_mu #h(1pt) Phi(bold(x)) = (kappa_mu + 2x_mu tilde(Delta) - 2x^nu S_(mu nu)- 2i x_mu x^nu partial_nu+ i bold(x)^2 partial_mu)Phi(bold(x)). $
+
+Now suppose the field is a spinless field; then a finite dilation acts as follows:
+
+$ e^(i alpha D) phi.alt(bold(x)) = e^(alpha Delta) phi.alt(e^alpha bold(x)). $
+
+If we identify $e^alpha = lambda$, then we have:
+
+$ bold(x) \u{27FC} lambda bold(x) \ phi.alt (bold(x)) \u{27FC} lambda^(Delta) phi.alt (bold(x)). $
+
+We can conclude that these fields under global conformal transformations $x arrow x^prime$ transform according to
+
+$ phi.alt_j (bold(x)) arrow #h(3pt) abs(frac(partial bold(x)^prime,partial bold(x)))^(Delta_j /d) phi.alt_j (bold(x)^prime). $
+
+A field transforming as above is called a _quasi-primary field_, and for quasi-primary fields the correlation functions satisfy:
+
+$ \u{27E8} phi.alt_1 (bold(x)_1) dots.h.c phi.alt_n (bold(x)_n) \u{27E9} = abs(frac(partial bold(x)^prime,partial bold(x)))^(Delta_1 /d)_(bold(x)=bold(x)_1) dots.h.c abs(frac(partial bold(x)^prime,partial bold(x)))^(Delta_n /d)_(bold(x) = bold(x)_n) \u{27E8} phi.alt_1 (bold(x)^prime_1) dots.h.c phi.alt_n (bold(x)^prime_n) \u{27E9}. $ <eq54>
+
+This property imposes severe restrictions on 2- and 3-point functions of quasi-primary fields. First, if we specialize to a scale transformation $bold(x) arrow lambda bold(x)$, we obtain
+
+$ \u{27E8} phi.alt_1 (bold(x)_1) phi.alt_2 (bold(x)_2) \u{27E9} = lambda^(Delta_1+Delta_2) \u{27E8} phi.alt_1 (lambda bold(x)_1) phi.alt_2 (lambda bold(x)_2) \u{27E9}, $<eq55>
+
+because in this case $abs(frac(partial bold(x)^prime,partial bold(x))) = lambda^d$. The correlation functions are invariant under rotations and translations: translation invariance tells us that the correlation function should only depend on the differences $x_i -x_j$, and rotation invariance restricts it to $abs(bold(x)_1-bold(x)_2)$, so that we must have
+
+$ \u{27E8} phi.alt_1 (bold(x)_1) phi.alt_2 (bold(x)_2) \u{27E9} = f(abs(bold(x)_1-bold(x)_2)). $
+
+Combined with @eq55, invariance under dilation gives us:
+
+$ \u{27E8} phi.alt_1 (bold(x)_1) phi.alt_2 (bold(x)_2) \u{27E9} = frac(C_(12),abs(bold(x)_1-bold(x)_2)^(Delta_1+Delta_2)). $
+
+The last restriction comes from the special conformal transformations. Recall that the SCT has the form:
+
+$ x^mu \u{27FC} x^(prime mu)= frac(x^mu - b^mu bold(x)^2,1- 2bold(b)dot bold(x)+bold(b)^2 bold(x)^2), \ abs(frac(partial bold(x)^prime,partial bold(x))) = frac(1,(1-2 bold(b)dot bold(x)+ bold(b)^2 bold(x)^2)^d), $
+
+so @eq54 implies:
+
+$ frac(C_(12),abs(bold(x)_1-bold(x)_2)^(Delta_1+Delta_2)) = C_12/(gamma_1^(Delta_1)gamma_2^(Delta_2))frac((gamma_1 gamma_2)^frac(Delta_1 +Delta_2,2),abs(bold(x)_1-bold(x)_2)^(Delta_1+Delta_2)) quad "where" gamma_i = 1- 2bold(b)dot bold(x)_i +bold(b)^2 bold(x)_i^2. $ <eq59>
+
+The main difficulty in deriving @eq59 is to show $(bold(x)^prime_1 - bold(x)^prime_2)^2 = frac((bold(x)_1 - bold(x)_2)^2,gamma_1 gamma_2)$, so we show it explicitly. We have
+
+$ bold(x)^prime_1 - bold(x)^prime_2 = frac((gamma_2 x_1^mu - gamma_2 b^mu bold(x)_1^2-gamma_1 x_2^mu+gamma_1 b^mu bold(x)_2^2),gamma_1 gamma_2).  $
+
+Let $beta^mu = gamma_2 x_1^mu - gamma_2 b^mu bold(x)_1^2-gamma_1 x_2^mu+gamma_1 b^mu bold(x)_2^2 $; then we want to compute
+
+$ (bold(x)^prime_1 - bold(x)^prime_2)^2 = frac(beta^mu beta_mu,gamma_1^2 gamma_2^2). $
+
+The product $beta^mu beta_mu$ has 16 terms as follows:
+
+$ gamma_2^2 bold(x)_1^2 - gamma_2^2 (bold(b)dot bold(x)_1) bold(x)_1^2- gamma_1 gamma_2 bold(x)_1 dot bold(x)_2+ gamma_1 gamma_2 (bold(b)dot bold(x)_1) bold(x)_2^2, \ -gamma_2^2 (bold(b)dot bold(x)_1) bold(x)_1^2 + gamma_2^2 bold(b)^2 bold(x)_1^4 + gamma_1 gamma_2 (bold(b)dot bold(x)_2) bold(x)_1^2 - gamma_1 gamma_2 bold(b)^2 bold(x)_1^2 bold(x)_2^2,  \ -gamma_1 gamma_2  bold(x)_1 dot bold(x)_2 + gamma_1 gamma_2 (bold(b)dot bold(x)_2) bold(x)_1^2 + gamma_1^2 bold(x)_2^2- gamma_1^2  (bold(b)dot bold(x)_2) bold(x)_2^2, \ gamma_1 gamma_2 (bold(b)dot bold(x)_1) bold(x)_2^2 - gamma_1 gamma_2 bold(b)^2 bold(x)_1^2 bold(x)_2^2 - gamma_1^2 (bold(b)dot bold(x)_2) bold(x)_2^2 + gamma_1^2 bold(b)^2 bold(x)_2^4 . $
+
+Note that
+
+$ 2 gamma_1 gamma_2 (bold(b)dot bold(x)_1) bold(x)_2^2 - gamma_1 gamma_2 bold(b)^2 bold(x)_1^2 bold(x)_2^2 &= gamma_1 gamma_2 bold(x)_2^2 -gamma_1 gamma_2 bold(x)_2^2(1-2 bold(b)dot bold(x)_1 +bold(b)^2 bold(x)_1^2)  \ &= gamma_1 gamma_2 bold(x)_2^2-gamma_1^2 gamma_2 bold(x)_2^2,\ 2 gamma_1 gamma_2 (bold(b)dot bold(x)_2) bold(x)_1^2 - gamma_1 gamma_2 bold(b)^2 bold(x)_1^2 bold(x)_2^2 &= gamma_1 gamma_2 bold(x)_1^2 -gamma_1 gamma_2 bold(x)_1^2(1-2 bold(b)dot bold(x)_2 +bold(b)^2 bold(x)_2^2)  \ &= gamma_1 gamma_2 bold(x)_1^2-gamma_1 gamma_2^2 bold(x)_1^2, $
+
+so that $beta^mu beta_mu$ becomes
+
+$ &gamma_2^2 bold(x)_1^2 - gamma_2^2 (bold(b)dot bold(x)_1) bold(x)_1^2- gamma_1 gamma_2 bold(x)_1 dot bold(x)_2-gamma_2^2 (bold(b)dot bold(x)_1) bold(x)_1^2 + gamma_2^2 bold(b)^2 bold(x)_1^4 \ & - gamma_1 gamma_2  bold(x)_1 dot bold(x)_2  + gamma_1^2 bold(x)_2^2- gamma_1^2  (bold(b)dot bold(x)_2) bold(x)_2^2- gamma_1^2 (bold(b)dot bold(x)_2) bold(x)_2^2 + gamma_1^2 bold(b)^2 bold(x)_2^4 \ & + gamma_1 gamma_2 bold(x)_2^2-gamma_1^2 gamma_2 bold(x)_2^2+gamma_1 gamma_2 bold(x)_1^2-gamma_1 gamma_2^2 bold(x)_1^2 \ =  &(gamma_1 gamma_2 bold(x)_1^2+ gamma_1 gamma_2 bold(x)_2^2 - 2 gamma_1 gamma_2 bold(x)_1 bold(x)_2)  + (gamma_2^2 bold(x)_1^2-gamma_1 gamma_2^2 bold(x)_1^2 - 2gamma_2^2 (bold(b)dot bold(x)_1)bold(x)_1^2+gamma_2^2bold(b)^2bold(x)_1^4 ) \ + & (gamma_1^2 bold(x)_2^2-gamma_1^2 gamma_2 bold(x)_2^2 - 2gamma_1^2 (bold(b)dot bold(x)_2)bold(x)_2^2+gamma_1^2bold(b)^2bold(x)_2^4 ), $
+
+and notice that
+
+$ gamma_1 gamma_2 bold(x)_1^2+ gamma_1 gamma_2 bold(x)_2^2 - 2 gamma_1 gamma_2 bold(x)_1 bold(x)_2 = gamma_1 gamma_2 (bold(x)_1 - bold(x)_2)^2, \ gamma_2^2 bold(x)_1^2-gamma_1 gamma_2^2 bold(x)_1^2 = gamma_2^2 bold(x)_1^2(1-gamma_1) = 2gamma_2^2 (bold(b)dot bold(x)_1)bold(x)_1^2-gamma_2^2bold(b)^2bold(x)_1^4,\ gamma_1^2 bold(x)_2^2-gamma_1^2 gamma_2 bold(x)_2^2 = gamma_1^2 bold(x)_2^2(1-gamma_2) = 2gamma_1^2 (bold(b)dot bold(x)_2)bold(x)_2^2 - gamma_1^2bold(b)^2bold(x)_2^4. $
+
+Finally, we have proved that $beta^mu beta_mu = gamma_1 gamma_2 (bold(x)_1 - bold(x)_2)^2$ and $(bold(x)^prime_1 - bold(x)^prime_2)^2 = frac((bold(x)_1 - bold(x)_2)^2,gamma_1 gamma_2)$.
+
+The constraint @eq59 is satisfied only if $Delta_1 = Delta_2$. In other words, two quasi-primary fields are correlated only if they have the same scaling dimension:
+
+$ \u{27E8} phi.alt_1 (bold(x)_1) phi.alt_2 (bold(x)_2) \u{27E9} = cases(frac(C_(12),abs(bold(x)_1-bold(x)_2)^(2 Delta_1))quad &"if" quad Delta_1 = Delta_2 ,0 quad &"if" quad Delta_1 eq.not Delta_2 ) $
+
+The 3-point function is similarly restricted. Invariance under translations, rotations, and dilatations requires
+
+$ \u{27E8} phi.alt_1 (bold(x)_1) phi.alt_2 (bold(x)_2)  phi.alt_3 (bold(x)_3) \u{27E9} = sum_(a,b,c) frac(C_(a b c),abs(bold(x)_1-bold(x)_2)^a abs(bold(x)_2-bold(x)_3)^b abs(bold(x)_1-bold(x)_3)^c), $
+
+and the summation over $a,b,c$ is restricted such that $a+b+c = Delta_1 + Delta_2+Delta_3$. Special conformal transformations further require $a=Delta_1 + Delta_2 -Delta_3, #h(2pt) b = Delta_2 +Delta_3 -Delta_1,#h(2pt) c=Delta_3+Delta_1 -Delta_2. $ Thus, we get the final form of the 3-point correlation function:
+
+$  \u{27E8} phi.alt_1 (bold(x)_1) phi.alt_2 (bold(x)_2)  phi.alt_3 (bold(x)_3) \u{27E9} = frac(C_(a b c),abs(bold(x)_1-bold(x)_2)^(Delta_1 + Delta_2 -Delta_3) abs(bold(x)_2-bold(x)_3)^(Delta_2 +Delta_3 -Delta_1) abs(bold(x)_1-bold(x)_3)^(Delta_3+Delta_1 -Delta_2)). $
+
+However, only 2-point and 3-point correlation functions have these neat forms. In general, the $n$-point function will depend on the cross-ratios $frac(r_(i j)r_(k l),r_(i k )r_(j l))$. For example, the 4-point correlation function may take the following form:
+
+$ \u{27E8} phi.alt_1 (bold(x)_1) dots.h.c  phi.alt_4 (bold(x)_4)  \u{27E9} = f(frac(r_12 r_34,r_13 r_24),frac(r_12 r_34,r_23 r_14)) product_(i<j)^4 r_(i j)^(Delta/3 -Delta_i -Delta_j) quad "where" Delta = sum_(i=1)^4 Delta_i. $
 
 == Summary of Chapter 1
 
 This chapter introduces the basic ideas and mathematical framework of Conformal Field Theory (CFT).
 
-*§1.1 Motivation.* Quantum field theory describes elementary particles as irreducible representations of the Poincaré group. At critical points of statistical systems (e.g., the 2D Ising model), the correlation length diverges and the system becomes scale invariant. Polyakov discovered that such critical systems possess an even larger symmetry --- conformal symmetry --- which preserves angles and the metric up to a local scale factor: $g_(mu nu)^prime (x^prime) prop Omega(x) g_(mu nu) (x)$.
+*§1.1 Motivation.* Quantum field theory describes elementary particles as irreducible representations of the Poincaré group. From the renormalization group perspective, CFTs are the fixed points of RG flows ($beta(g^*)=0$), and any QFT can be viewed as a flow between a UV CFT and an IR CFT. In condensed matter and quantum information, CFT governs universal properties at continuous phase transitions, and the entanglement entropy of $(1+1)$D critical systems exhibits the universal scaling $S_A = frac(c,3) ln(ell\/a)$. At critical points of statistical systems (e.g., the 2D Ising model), the correlation length diverges and the system becomes scale invariant. Polyakov discovered that such critical systems possess an even larger symmetry --- conformal symmetry --- which preserves angles and the metric up to a local scale factor: $g_(mu nu)^prime (x^prime) prop Omega(x) g_(mu nu) (x)$. 
 
 *§1.2 Conformal symmetries in $d$ dimensions.* By studying infinitesimal transformations $x^mu arrow x^mu + epsilon^mu$, the conformal Killing equation $ partial_mu epsilon_nu+partial_nu epsilon_mu = frac(2,d) (partial dot epsilon) g_(mu nu) $ is derived. For $d>2$, $epsilon_mu$ is at most quadratic in coordinates, yielding four classes of transformations: translations ($a_mu$), rotations ($m_(mu nu)$), dilations ($alpha g_(mu nu)$), and special conformal transformations (SCT): $ x^mu \u{27FC} frac(x^mu - b^mu bold(x)^2,1-2bold(b)dot bold(x) +bold(b)^2 bold(x)^2). $ SCT = Inversion $compose$ Translation $compose$ Inversion.
 
-*§1.3 Conformal symmetries in 2D.* The conformal Killing equation reduces to the Cauchy--Riemann equations. Global conformal transformations on $CC union {infinity}$ are Möbius transformations $f(z)=(a z+b)/(c z+d)$ with $a d - b c =1$, forming $S L(2,CC)$. The local conformal algebra is infinite-dimensional, generated by $l_n = -z^(n+1)partial_z$ obeying the Witt algebra: $[l_n, l_m]=(n-m)l_(n+m)$. Global transformations correspond to $\{l_(-1), l_0, l_1\}$.
+*§1.3 Conformal symmetries in 2D.* The conformal Killing equation reduces to the Cauchy--Riemann equations. Global conformal transformations on $CC union {infinity}$ are Möbius transformations $f(z)=(a z+b)/(c z+d)$ with $a d - b c =1$, forming $S L(2,CC)$. 
 
-*§1.4 Constraints on correlation functions.* The generators $P_mu, D, L_(mu nu), K_mu$ and their algebra are constructed. A quasi-primary field of scaling dimension $Delta$ transforms as $ phi.alt(bold(x)) arrow abs(frac(partial bold(x)^prime,partial bold(x)))^(Delta\/d) phi.alt(bold(x)^prime). $ Conformal invariance fully fixes the 2-point function (nonzero only if $Delta_1 = Delta_2$): $ \u{27E8} phi.alt_1  phi.alt_2  \u{27E9} = frac(C_(12),abs(bold(x)_(12))^(2Delta)), $ and the 3-point function up to a single constant $C_(123)$. The 4-point function depends on two undetermined cross-ratios $frac(r_(12) r_(34),r_(13) r_(24))$ and $frac(r_(12) r_(34),r_(23) r_(14))$, reflecting the remaining dynamical content of the theory.
+The local conformal algebra is infinite-dimensional, generated by $l_n = -z^(n+1)partial_z$ obeying the Witt algebra: 
+$ [l_n, l_m]=(n-m)l_(n+m) . $ 
+Global transformations correspond to $\{l_(-1), l_0, l_1\}$, which is the subalgebra of the local conformal algebra.
+
+*§1.4 Constraints on correlation functions.* The generators $P_mu, D, L_(mu nu), K_mu$ of $d>=3$ conformal group and their algebra are constructed. A quasi-primary field of scaling dimension $Delta$ transforms as $ phi.alt(bold(x)) arrow abs(frac(partial bold(x)^prime,partial bold(x)))^(Delta\/d) phi.alt(bold(x)^prime). $ Conformal invariance fully fixes the 2-point function (nonzero only if $Delta_1 = Delta_2$): $ \u{27E8} phi.alt_1  phi.alt_2  \u{27E9} = frac(C_(12),abs(bold(x)_(12))^(2Delta)), $ and the 3-point function up to a single constant $C_(123)$. The 4-point function depends on two undetermined cross-ratios $frac(r_(12) r_(34),r_(13) r_(24))$ and $frac(r_(12) r_(34),r_(23) r_(14))$, reflecting the remaining dynamical content of the theory.
 
