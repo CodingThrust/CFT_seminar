@@ -16,6 +16,11 @@
 
 = From Classical Partition Functions to Quantum Circuits
 
+This note is devoted to the explicit mapping between the 2D classical Ising model and the 1+1D quantum Ising model. This is a classic example of the deep connection between classical statistical mechanics and quantum mechanics, as the slogan say
+$ D+1 "dim statistical mechanics" = D "dim quantum mechanics" $
+
+which can be understood through the *transfer matrix* method and *tensor networks*. The key idea is that the partition function of a classical model can be expressed as a product of transfer matrices, which in turn can be interpreted as layers of a quantum circuit. By decomposing the transfer matrix into simpler building blocks, we can identify the corresponding quantum gate. Below we will illustrate this mapping concretely for the 2D classical Ising model on a square lattice, and show how the quantum Hamiltonian emerges.
+
 == The transfer matrix and quantum circuits
 
 A central idea connecting classical statistical mechanics to quantum mechanics is the _transfer matrix_ method. Consider a classical statistical model defined on a lattice. Its partition function can be written as
@@ -32,7 +37,7 @@ This transfer-matrix/quantum-circuit correspondence provides a powerful dictiona
     align: (center, center),
     stroke: 0.5pt,
     inset: 8pt,
-    [*Classical statistical model*], [*Quantum system*],
+    [*Classical statistical system*], [*Quantum system*],
     [Partition function $Z = tr(T^N)$], [Imaginary-time path integral],
     [Transfer matrix $T$], [Imaginary-time evolution $e^(-tau hat(H))$],
     [Row-to-row transfer], [One layer of quantum circuit],
@@ -106,7 +111,7 @@ where $beta_h = beta J_h$ and $beta_v = beta J_v$ are the horizontal and vertica
 
   // Labels
   content((2.5 * dx, -0.7 * dy), text(size: 9pt)[$arrow.r quad j$])
-  content((-0.7 * dx, 2 * dy), angle: 90deg, text(size: 9pt)[$arrow.t quad n$])
+  content((-0.7 * dx, 2 * dy), angle: 0deg, text(size: 9pt)[$n arrow.t quad$])
 
   // Brace for "row n"
   content((cols * dx + 0.3, 2 * dy), text(size: 9pt)[$bold(sigma)_n$])
@@ -114,9 +119,9 @@ where $beta_h = beta J_h$ and $beta_v = beta J_v$ are the horizontal and vertica
 
 #figure(
   canvas(length: 0.75cm, fig1),
-  caption: [Square lattice with classical Ising spins $sigma_i = plus.minus 1$ on each vertex.
+  caption: [An configuration (paramagnetic phase) of  classical Ising spins $sigma_i = plus.minus 1$ on each vertex on square lattice.
   Blue ($+$) and red ($-$) denote spin-up and spin-down respectively.
-  Horizontal bonds carry coupling $beta_h$ and vertical bonds carry coupling $beta_v$.]
+  Horizontal bonds carry coupling $beta_h$ and vertical bonds carry coupling $beta_v$, where n takes value $1, 2, dots, N$, and j takes value $1, 2, dots, L$.]
 ) <fig:lattice>
 
 #v(0.5em)
@@ -127,7 +132,7 @@ The transfer matrix $T$ maps one row of spins to the next. Its matrix elements a
 
 $ angle.l bold(sigma)^prime | T | bold(sigma) angle.r = exp(beta_h sum_j sigma^prime_j sigma^prime_(j+1) + beta_v sum_j sigma_j sigma^prime_j). $
 
-The crucial insight is that we can factorize $T$ into a product of two simpler pieces:
+The crucial insight is that we can factorize $T$ into a product of two simpler pieces as in figure 2:
 
 $ T = T_"vertical" dot T_"horizontal" = product_j e^(beta_v sigma_j sigma^prime_j) dot product_j e^(beta_h sigma^prime_j sigma^prime_(j+1)). $
 
@@ -135,11 +140,11 @@ Now we promote the classical spins to quantum operators. In the computational ba
 
 - *Diagonal interaction (vertical bond):* The Boltzmann weight $e^(beta_v sigma_j sigma_(j+1)^prime)$ acts _between_ two adjacent rows. When interpreted as a matrix in the $sigma, sigma^prime$ basis, it takes the form:
 
-  $ T_"vert" = mat(e^(beta_v), e^(-beta_v); e^(-beta_v), e^(beta_v)) prop e^(beta^*_v hat(X)), $
+  $ T_"vert" = mat(e^(beta_v), e^(-beta_v); e^(-beta_v), e^(beta_v)) = e^(beta_v)(1 + e^(-2beta_v) X ) prop e^(beta^*_v hat(X)), $
 
   where $hat(X)$ is the Pauli-$X$ operator and the dual coupling $beta^*_v$ is defined by
 
-  $ e^(-2 beta^*_v) = tanh(beta_v), quad "i.e.," quad beta^*_v = 1/2 ln(1 + delta) = 1/2 "arctanh"(e^(-2 beta_v)). $
+  $ e^(-2 beta^*_v) = tanh(beta_v), quad "i.e.," quad beta_v =  "arctanh"(e^(-2 beta^*_v)). $
 
   To verify: $e^(beta^*_v hat(X)) = cosh(beta^*_v) hat(I) + sinh(beta^*_v) hat(X)$, which has matrix elements $e^(beta^*_v hat(X))_(sigma sigma^prime) prop e^(beta_v sigma sigma^prime)$.
 
@@ -282,72 +287,141 @@ which is _exactly_ one layer of a quantum circuit composed of single-qubit rotat
     mark: (end: "stealth", fill: black),
   )
 
-  // --- Right panel: Quantum circuit ---
-  let cx = arrow2-x + 3.0
+  // --- Right panel: Quantum circuit (vertical, time upward) ---
+  let cx = arrow2-x + 2.8
   let nq = 4  // number of qubits
-  let wire-len = 4.5
+  let qsp = 1.2  // horizontal spacing between qubits
 
-  // Draw qubit wires
+  // Vertical extent parameters
+  let y-mps = -0.3     // MPS row y
+  let y-zz  = 1.2      // ZZ gate layer y
+  let y-x   = 2.8      // X gate layer y
+  let y-zz2 = 4.4      // second ZZ layer y
+  let y-x2  = 6.0      // second X layer y
+  let y-top = 7.0      // top of qubit wires
+
+  // Draw vertical qubit wires (time goes upward)
   for q in range(nq) {
     line(
-      (cx, q * dy),
-      (cx + wire-len, q * dy),
+      (cx + q * qsp, y-mps + 0.3),
+      (cx + q * qsp, y-top),
       stroke: 0.8pt,
     )
-    // qubit label
-    content((cx - 0.5, q * dy),
-      text(size: 8pt)[$|sigma_#(q + 1) angle.r$])
   }
 
-  // Layer 1: single-qubit gates e^{β*X}
-  let g1x = cx + 1.0
-  for q in range(nq) {
-    rect(
-      (g1x - 0.35, q * dy - 0.25),
-      (g1x + 0.35, q * dy + 0.25),
-      fill: blue.lighten(70%),
-      stroke: 0.8pt + blue,
-    )
-    content((g1x, q * dy),
-      text(size: 6pt, fill: blue)[$e^(beta^*_v X)$])
-  }
-
-  // Layer 2: two-qubit ZZ gates
-  let g2x = cx + 2.8
+  // --- Bottom: gray MPS initial state ---
+  // MPS tensors as gray circles connected by a horizontal bond
   for q in range(nq - 1) {
-    // Vertical line connecting two qubits
     line(
-      (g2x, q * dy),
-      (g2x, (q + 1) * dy),
+      (cx + q * qsp, y-mps),
+      (cx + (q + 1) * qsp, y-mps),
+      stroke: 1.5pt + gray,
+    )
+  }
+  for q in range(nq) {
+    circle(
+      (cx + q * qsp, y-mps),
+      radius: 0.22,
+      fill: gray.lighten(40%),
+      stroke: 0.8pt + gray,
+    )
+    // vertical leg going up
+    line(
+      (cx + q * qsp, y-mps + 0.22),
+      (cx + q * qsp, y-mps + 0.3),
+      stroke: 0.8pt,
+    )
+  }
+  content((cx + (nq - 1) / 2 * qsp, y-mps - 0.5),
+    text(size: 7pt, fill: gray.darken(30%))[initial state (MPS)])
+
+  // === Layer 1: ZZ gates (red), three gates side by side ===
+  for q in range(nq - 1) {
+    // Vertical lines connecting two qubits to gate
+    circle((cx + q * qsp, y-zz), radius: 0.07, fill: red)
+    circle((cx + (q + 1) * qsp, y-zz), radius: 0.07, fill: red)
+    line(
+      (cx + q * qsp, y-zz),
+      (cx + (q + 1) * qsp, y-zz),
       stroke: 1.0pt + red,
     )
-    // Gate box
+    // Gate box centered between the two qubits
     rect(
-      (g2x - 0.4, (q + 0.5) * dy - 0.25),
-      (g2x + 0.4, (q + 0.5) * dy + 0.25),
+      (cx + (q + 0.5) * qsp - 0.4, y-zz - 0.22),
+      (cx + (q + 0.5) * qsp + 0.4, y-zz + 0.22),
       fill: red.lighten(70%),
       stroke: 0.8pt + red,
     )
-    content((g2x, (q + 0.5) * dy),
-      text(size: 6pt, fill: red)[$e^(beta_h Z Z)$])
-    // Dots on qubits
-    circle((g2x, q * dy), radius: 0.07, fill: red)
-    circle((g2x, (q + 1) * dy), radius: 0.07, fill: red)
+    content((cx + (q + 0.5) * qsp, y-zz),
+      text(size: 5.5pt, fill: red)[$e^(beta_h Z Z)$])
   }
 
-  // time arrow
+  // === Layer 2: X gates (blue), four gates side by side ===
+  for q in range(nq) {
+    rect(
+      (cx + q * qsp - 0.35, y-x - 0.22),
+      (cx + q * qsp + 0.35, y-x + 0.22),
+      fill: blue.lighten(70%),
+      stroke: 0.8pt + blue,
+    )
+    content((cx + q * qsp, y-x),
+      text(size: 5.5pt, fill: blue)[$e^(beta^*_v X)$])
+  }
+
+  // === Layer 3: ZZ gates again (second Trotter step) ===
+  for q in range(nq - 1) {
+    circle((cx + q * qsp, y-zz2), radius: 0.07, fill: red)
+    circle((cx + (q + 1) * qsp, y-zz2), radius: 0.07, fill: red)
+    line(
+      (cx + q * qsp, y-zz2),
+      (cx + (q + 1) * qsp, y-zz2),
+      stroke: 1.0pt + red,
+    )
+    rect(
+      (cx + (q + 0.5) * qsp - 0.4, y-zz2 - 0.22),
+      (cx + (q + 0.5) * qsp + 0.4, y-zz2 + 0.22),
+      fill: red.lighten(70%),
+      stroke: 0.8pt + red,
+    )
+    content((cx + (q + 0.5) * qsp, y-zz2),
+      text(size: 5.5pt, fill: red)[$e^(beta_h Z Z)$])
+  }
+
+  // === Layer 4: X gates again ===
+  for q in range(nq) {
+    rect(
+      (cx + q * qsp - 0.35, y-x2 - 0.22),
+      (cx + q * qsp + 0.35, y-x2 + 0.22),
+      fill: blue.lighten(70%),
+      stroke: 0.8pt + blue,
+    )
+    content((cx + q * qsp, y-x2),
+      text(size: 5.5pt, fill: blue)[$e^(beta^*_v X)$])
+  }
+
+  // Brace labels for one layer
+  // Left brace indicating one T
+  let brace-x = cx - 0.7
+  line((brace-x, y-zz - 0.3), (brace-x, y-x + 0.3), stroke: 0.6pt)
+  line((brace-x - 0.15, y-zz - 0.3), (brace-x + 0.05, y-zz - 0.3), stroke: 0.6pt)
+  line((brace-x - 0.15, y-x + 0.3), (brace-x + 0.05, y-x + 0.3), stroke: 0.6pt)
+  content((brace-x - 0.6, (y-zz + y-x) / 2),
+    text(size: 7pt)[$T$])
+
+  // time arrow on the right
+  let ta-x = cx + (nq - 1) * qsp + 0.8
   line(
-    (cx + wire-len + 0.3, -0.5 * dy),
-    (cx + wire-len + 0.3, (nq - 0.5) * dy),
+    (ta-x, y-mps),
+    (ta-x, y-top),
     stroke: 0.6pt,
     mark: (end: "stealth", fill: black),
   )
-  content((cx + wire-len + 0.7, (nq - 1) / 2 * dy),
+  content((ta-x + 0.5, (y-mps + y-top) / 2),
     angle: -90deg, text(size: 8pt)[$"time"$])
 
   // Circuit label
-  content((cx + wire-len / 2, -0.8 * dy),
-    text(size: 8pt)[Quantum circuit (one layer = one $T$)])
+  content((cx + (nq - 1) / 2 * qsp, y-top + 0.5),
+    text(size: 8pt)[Quantum circuit])
 }
 
 #figure(
