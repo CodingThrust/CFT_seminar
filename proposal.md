@@ -109,22 +109,30 @@
 **数值参考**: Zou Ch. 4.1.1 (Scaling dimensions and conformal spins)
 
 **理论内容**:
-- **Primary Fields的定义**: $[L_n, \phi(z,\bar{z})] = z^{n+1}\partial\phi + \Delta(n+1)z^n\phi$（共形维数$\Delta = h + \bar{h}$，自旋$s = h - \bar{h}$）
+- **Primary Fields的定义**: 
+  - $[L_n, \phi(z,\bar{z})] = z^{n+1}\partial\phi + \Delta(n+1)z^n\phi$（共形维数$\Delta = h + \bar{h}$，自旋$s = h - \bar{h}$）(not mentioned in week2)
+  - $\phi(z^{\prime},\bar{z}^{\prime}) = \left( \frac{\mathrm{d}f}{dz}\right)^h\left( \frac{\mathrm{d}f}{d\bar{z}}\right)^{\bar{h}}\phi(z,\bar{z})$ under conformal map $f(z)$. 
+  - Invariant under classical conformal generators $l_n, \ (n < 1)$, not only global conformal transformation generators $l_{-1}, l_0, l_1$.
 - **关联函数的约束**: 共形不变性固定了两点、三点函数的形式
   $$\langle \phi_i(z_1)\phi_j(z_2)\rangle = \frac{\delta_{ij}}{|z_1-z_2|^{2\Delta_i}}$$
 - **Radial Quantization**: 将复平面视为欧几里得时间-空间，原点为过去无穷远，无穷远为未来无穷远
   - **翻译**: 这等价于统计力学中的圆柱几何（Transfer Matrix演化）
 
-**计算环节（30分钟）**:
-- 验证Ising模型的两点函数在临界点确为幂律衰减 $\langle \sigma_i\sigma_j\rangle \sim |i-j|^{-\eta}$，并提取$\eta = 2\Delta_\sigma$
+**Physical translation环节（30分钟）**:
+讲解如何把classical Ising model map to quantum Ising model，即张量网络的transfer matrix和量子电路的门之间的翻译。以及为什么$2+0D$的自由能密度等效于$1+1D$的基态能量， 这告诉我们不仅可以从经典系统来计算CFT，也可以从量子系统来计算CFT。参见[Ising model note](./note/Ising.typ).
 
 **课后实践（Zou Ch. 4.1.1）**:
-- **数值实验**：使用ED（精确对角化）计算TFIM基态
-- 计算能量密度$e_0(N)$，拟合Casimir能量$E_0 = \epsilon_0 L - \frac{\pi c}{6L}$，提取中心荷$c$的数值估计（目标：$c \approx 0.5$）
-- 计算$N=16-20$的TFIM两点关联函数
-- 对数坐标下拟合幂律指数，提取$\eta = 2\Delta_\sigma$的数值估计
-- 对比Ginsparg第5章预言的$\Delta_\sigma = 1/8$
+- **数值实验（量子）**：
+  - 使用ED（精确对角化）计算周期性边界条件(PBC)1D quantum Ising model基态 $\ket{{\rm GS}}$和能量$E_0$。
+  - 计算基态能量随着system size的scaling $E_0(L)$（比如$N=10-18$），拟合Casimir能量$E_0 = \epsilon_0 L - \frac{\pi c}{6L}$，其中$L$为1D chain的长度。提取中心荷$c$的数值估计（目标：$c \approx 0.5$）。
+  - 计算基态的TFIM两点关联函数$\langle Z_iZ_j\rangle$，验证Ising模型的两点函数在临界点确为幂律衰减 $\langle Z_iZ_j\rangle \sim |i-j|^{-\eta}$，并提取$\eta = 2\Delta_\sigma$
+- **数值实验（经典）**：
+   - 张量网络计算2D square lattice classical Ising model自由能 $F = - \ln Z$，比如$L_x=10-18$, $L_y = 100$，其中$Z = tr(e^{-\beta H})$, 取了trace所以$L_x$方向也是PBC。
+   - 计算自由能密度$F/L_y$随着system size的scaling $E_0(L_x)$，拟合Casimir能量$F/L_y = \epsilon_0 L_x - \frac{\pi c}{6L_x}$
+   - 计算的TFIM两点关联函数，验证Ising模型的两点函数在临界点确为幂律衰减 $\langle \sigma_i\sigma_j\rangle \sim |i-j|^{-\eta}$，并提取$\eta = 2\Delta_\sigma$.
 
+选择一个即可，（当然可以都做）。
+  
 **关键联系**: 
 > "Radial quantization中的'真空'就是Transfer Matrix的最大本征值对应的基态。'态-算符对应'中的态$|\phi\rangle$就是通过在$t=0$插入算符$\phi(0)$作用于真空产生的。"
 
