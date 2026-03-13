@@ -41,7 +41,7 @@ This transfer-matrix/quantum-circuit correspondence provides a powerful dictiona
     [Partition function $Z = tr(T^N)$], [Imaginary-time path integral],
     [Transfer matrix $T$], [Imaginary-time evolution $e^(-tau hat(H))$],
     [Row-to-row transfer], [One layer of quantum circuit],
-    [Classical spins $sigma_i = plus.minus 1$], [Computational basis $|sigma_i chevron.r$],
+    [Classical spins $sigma_i = plus.minus 1$], [Computational basis $|sigma_i angle.r$],
     [Inverse temperature $beta$], [Imaginary time $tau$],
   )
 ]
@@ -52,7 +52,7 @@ We now illustrate this correspondence concretely for the 2D classical Ising mode
 
 Consider a square lattice with classical Ising spins $sigma_i = plus.minus 1$ placed on each vertex. The Hamiltonian is
 
-$ H = -J sum_(chevron.l i, j chevron.r) sigma_i sigma_j, $
+$ H = -J sum_(angle.l i, j angle.r) sigma_i sigma_j, $
 
 where the sum is over nearest-neighbor pairs. We split the interactions into _horizontal_ bonds (within a row) and _vertical_ bonds (between adjacent rows). Denoting the spins in row $n$ collectively as $bold(sigma)_n = (sigma_(n,1), sigma_(n,2), dots, sigma_(n,L))$, the partition function on an $N times L$ lattice with periodic boundary conditions is
 
@@ -466,15 +466,15 @@ Physical observables are mapped as follows:
 $ f = -frac(1,beta) frac(ln Z,N) =-frac(1,beta) ln T prop E_0 =  -frac(1,beta) ln lambda_0, $
 
 where $lambda_0$ is the largest eigenvalue of $T$, and the ground-state energy $E_0$ of the quantum Hamiltonian is related to $lambda_0$.
-- *Correlation function* $chevron.l sigma_i sigma_j chevron.r$ in the classical model (note here we need to insert two spin operators among space directions) corresponds to $chevron.l hat(Z)_i hat(Z)_j chevron.r$ in the quantum model.
+- *Correlation function* $angle.l sigma_i sigma_j angle.r$ in the classical model (note here we need to insert two spin operators among space directions) corresponds to $angle.l hat(Z)_i hat(Z)_j angle.r$ in the quantum model.
 - *Phase diagram:* The 2D classical Ising model has a ferromagnetic (FM) to paramagnetic (PM) phase transition at the critical coupling $K_c = frac(1,2)log(1 + sqrt(2))$. Under the mapping, this corresponds to the quantum phase transition at $(h\/J)_c = 1$ in the transverse-field Ising chain, which is described by the Ising CFT with central charge $c = 1\/2$.
 
 == The anisotropic limit and the phase diagram
 
 The self-dual point of the classical model maps to the quantum critical point $h = J$, where the system is described by the Ising CFT. The phase diagram in the $(beta_h, beta_v)$ plane has:
 
-- *Ferromagnetic (FM) phase:* Large $beta_h, beta_v$ $arrow.r$ ordered, $chevron.l hat(Z) chevron.r eq.not 0$.
-- *Paramagnetic (PM) phase:* Small $beta_h, beta_v$ $arrow.r$ disordered, $chevron.l hat(Z) chevron.r = 0$.
+- *Ferromagnetic (FM) phase:* Large $beta_h, beta_v$ $arrow.r$ ordered, $angle.l hat(Z) angle.r eq.not 0$.
+- *Paramagnetic (PM) phase:* Small $beta_h, beta_v$ $arrow.r$ disordered, $angle.l hat(Z) angle.r = 0$.
 - *Critical line:* The self-dual curve separating the two phases, on which the theory flows to the Ising CFT in the infrared.
 
 // ========== FIGURE 3: Phase diagram ==========
