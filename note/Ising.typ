@@ -17,7 +17,7 @@
 = From Classical Partition Functions to Quantum Circuits
 
 This note is devoted to the explicit mapping between the 2D classical Ising model and the 1+1D quantum Ising model. This is a classic example of the deep connection between classical statistical mechanics and quantum mechanics, as the slogan say
-$ D+1 "dim statistical mechanics" = D "dim quantum mechanics" $
+$ D+1 "dim space statistical mechanics" = D "dim space quantum mechanics" $
 
 which can be understood through the *transfer matrix* method and *tensor networks*. The key idea is that the partition function of a classical model can be expressed as a product of transfer matrices, which in turn can be interpreted as layers of a quantum circuit. By decomposing the transfer matrix into simpler building blocks, we can identify the corresponding quantum gate. Below we will illustrate this mapping concretely for the 2D classical Ising model on a square lattice, and show how the quantum Hamiltonian emerges.
 
@@ -41,7 +41,7 @@ This transfer-matrix/quantum-circuit correspondence provides a powerful dictiona
     [Partition function $Z = tr(T^N)$], [Imaginary-time path integral],
     [Transfer matrix $T$], [Imaginary-time evolution $e^(-tau hat(H))$],
     [Row-to-row transfer], [One layer of quantum circuit],
-    [Classical spins $sigma_i = plus.minus 1$], [Computational basis $|sigma_i angle.r$],
+    [Classical spins $sigma_i = plus.minus 1$], [Computational basis $|sigma_i chevron.r$],
     [Inverse temperature $beta$], [Imaginary time $tau$],
   )
 ]
@@ -52,7 +52,7 @@ We now illustrate this correspondence concretely for the 2D classical Ising mode
 
 Consider a square lattice with classical Ising spins $sigma_i = plus.minus 1$ placed on each vertex. The Hamiltonian is
 
-$ H = -J sum_(angle.l i, j angle.r) sigma_i sigma_j, $
+$ H = -J sum_(chevron.l i, j chevron.r) sigma_i sigma_j, $
 
 where the sum is over nearest-neighbor pairs. We split the interactions into _horizontal_ bonds (within a row) and _vertical_ bonds (between adjacent rows). Denoting the spins in row $n$ collectively as $bold(sigma)_n = (sigma_(n,1), sigma_(n,2), dots, sigma_(n,L))$, the partition function on an $N times L$ lattice with periodic boundary conditions is
 
@@ -166,8 +166,8 @@ which is _exactly_ one layer of a quantum circuit composed of single-qubit rotat
   // --- Left panel: tensor network on bonds ---
   let rows = 4
   let cols = 4
-  let dx = 1.2
-  let dy = 1.2
+  let dx = 1.8
+  let dy = 1.8
 
   // Draw bonds as thick lines
   for r in range(rows) {
@@ -193,8 +193,8 @@ which is _exactly_ one layer of a quantum circuit composed of single-qubit rotat
   for r in range(rows - 1) {
     for c in range(cols) {
       rect(
-        (c * dx - 0.2, (r + 0.35) * dy),
-        (c * dx + 0.2, (r + 0.65) * dy),
+        (c * dx - 0.28, (r + 0.32) * dy),
+        (c * dx + 0.28, (r + 0.68) * dy),
         fill: blue.lighten(70%),
         stroke: 0.8pt + blue,
       )
@@ -205,8 +205,8 @@ which is _exactly_ one layer of a quantum circuit composed of single-qubit rotat
   for r in range(rows) {
     for c in range(cols - 1) {
       rect(
-        ((c + 0.35) * dx, r * dy - 0.18),
-        ((c + 0.65) * dx, r * dy + 0.18),
+        ((c + 0.32) * dx, r * dy - 0.25),
+        ((c + 0.68) * dx, r * dy + 0.25),
         fill: red.lighten(70%),
         stroke: 0.8pt + red,
       )
@@ -218,7 +218,7 @@ which is _exactly_ one layer of a quantum circuit composed of single-qubit rotat
     for c in range(cols) {
       circle(
         (c * dx, r * dy),
-        radius: 0.08,
+        radius: 0.1,
         fill: black,
       )
     }
@@ -226,7 +226,7 @@ which is _exactly_ one layer of a quantum circuit composed of single-qubit rotat
 
   // Label
   content(((cols - 1) / 2 * dx, -0.8 * dy),
-    text(size: 8pt)[Tensor network on bonds])
+    text(size: 8pt)[Tensor network])
 
   // --- Arrow ---
   let arrow-x = cols * dx + 0.8
@@ -292,13 +292,13 @@ which is _exactly_ one layer of a quantum circuit composed of single-qubit rotat
   let nq = 4  // number of qubits
   let qsp = 1.2  // horizontal spacing between qubits
 
-  // Vertical extent parameters
-  let y-mps = -0.3     // MPS row y
-  let y-zz  = 1.2      // ZZ gate layer y
-  let y-x   = 2.8      // X gate layer y
-  let y-zz2 = 4.4      // second ZZ layer y
-  let y-x2  = 6.0      // second X layer y
-  let y-top = 7.0      // top of qubit wires
+  // Vertical extent parameters (compressed to match left panel height ~5.4)
+  let y-mps = 0.0      // MPS row y
+  let y-zz  = 0.9      // ZZ gate layer y
+  let y-x   = 1.7      // X gate layer y
+  let y-zz2 = 2.7      // second ZZ layer y
+  let y-x2  = 3.5      // second X layer y
+  let y-top = 4.2      // top of qubit wires
 
   // Draw vertical qubit wires (time goes upward)
   for q in range(nq) {
@@ -402,7 +402,7 @@ which is _exactly_ one layer of a quantum circuit composed of single-qubit rotat
   // Brace labels for one layer
   // Left brace indicating one T
   let brace-x = cx - 0.7
-  line((brace-x, y-zz - 0.3), (brace-x, y-x + 0.3), stroke: 0.6pt)
+  line((brace-x -0.1, y-zz - 0.3), (brace-x -0.1, y-x + 0.3), stroke: 0.6pt)
   line((brace-x - 0.15, y-zz - 0.3), (brace-x + 0.05, y-zz - 0.3), stroke: 0.6pt)
   line((brace-x - 0.15, y-x + 0.3), (brace-x + 0.05, y-x + 0.3), stroke: 0.6pt)
   content((brace-x - 0.6, (y-zz + y-x) / 2),
@@ -420,7 +420,7 @@ which is _exactly_ one layer of a quantum circuit composed of single-qubit rotat
     angle: -90deg, text(size: 8pt)[$"time"$])
 
   // Circuit label
-  content((cx + (nq - 1) / 2 * qsp, y-top + 0.5),
+  content((cx + (nq - 1) / 2 * qsp, y-top - 5.7),
     text(size: 8pt)[Quantum circuit])
 }
 
@@ -433,13 +433,8 @@ which is _exactly_ one layer of a quantum circuit composed of single-qubit rotat
 
 == The quantum Hamiltonian
 
-Taking the partition function $Z = tr(T^N)$, the free energy density is
 
-$ f = -frac(1,beta) frac(ln Z,N) = -frac(1,beta) ln lambda_0, $
-
-where $lambda_0$ is the largest eigenvalue of $T$, and the ground-state energy $E_0$ of the quantum Hamiltonian is related to $lambda_0$.
-
-In the limit where the vertical coupling is much stronger than the horizontal one (the _anisotropic_ limit), we can write $T approx e^(-tau hat(H))$ with a small imaginary-time step $tau$, so that
+In the limit where the vertical coupling is much stronger than the horizontal one (the _anisotropic_ limit), we can write $T approx e^(-tau hat(H))$ with a small imaginary-time step $tau$ (revert trotterization), so that
 
 $ hat(H) = -J sum_j hat(Z)_j hat(Z)_(j+1) - h sum_j hat(X)_j, $
 
@@ -455,9 +450,9 @@ This establishes the complete mapping:
     stroke: 0.6pt + black,
   )[
     #align(center)[
-    *2D classical Ising model* ($N times L$ square lattice, coupling $K$) \
+    *2D classical Ising model* ($N times L$ square lattice, coupling constant $K$) \
     $arrow.b.double$ \
-    *1+1D quantum Ising model* ($L$ sites, $N$ imaginary-time steps) \
+    *1+1D quantum Ising model* ($L$ sites, $N$ imaginary-time steps, coupling constant $h$) \
     $ hat(H) = -J sum_j hat(Z)_j hat(Z)_(j+1) - h sum_j hat(X)_j $
     ]
   ]
@@ -465,24 +460,21 @@ This establishes the complete mapping:
 
 Physical observables are mapped as follows:
 
-- *Free energy* $F = -ln Z = -N ln lambda_0$ corresponds to the ground-state energy $E_0$.
-- *Correlation function* $angle.l sigma_i sigma_j angle.r$ in the classical model corresponds to $angle.l hat(Z)_i hat(Z)_j angle.r$ in the quantum model.
-- *Phase diagram:* The 2D classical Ising model has a ferromagnetic (FM) to paramagnetic (PM) phase transition at the critical coupling $K_c$. Under the mapping, this corresponds to the quantum phase transition at $(h\/J)_c = 1$ in the transverse-field Ising chain, which is described by the Ising CFT with central charge $c = 1\/2$.
+- *Free energy* Taking the partition function $Z = tr(T^N)$, the free energy is $F = -frac(1,beta)ln Z = -frac(1,beta)N ln lambda_0$. Its density corresponds to the ground-state energy $E_0$:
+
+
+$ f = -frac(1,beta) frac(ln Z,N) =-frac(1,beta) ln T prop E_0 =  -frac(1,beta) ln lambda_0, $
+
+where $lambda_0$ is the largest eigenvalue of $T$, and the ground-state energy $E_0$ of the quantum Hamiltonian is related to $lambda_0$.
+- *Correlation function* $chevron.l sigma_i sigma_j chevron.r$ in the classical model (note here we need to insert two spin operators among space directions) corresponds to $chevron.l hat(Z)_i hat(Z)_j chevron.r$ in the quantum model.
+- *Phase diagram:* The 2D classical Ising model has a ferromagnetic (FM) to paramagnetic (PM) phase transition at the critical coupling $K_c = frac(1,2)log(1 + sqrt(2))$. Under the mapping, this corresponds to the quantum phase transition at $(h\/J)_c = 1$ in the transverse-field Ising chain, which is described by the Ising CFT with central charge $c = 1\/2$.
 
 == The anisotropic limit and the phase diagram
 
-In the anisotropic case, the transfer matrix becomes
-
-$ M = e^(beta_v hat(Z)_i hat(Z)_(i+1)) dot e^(beta_h^* hat(X)_j), $
-
-and the Hamiltonian is
-
-$ hat(H) = -J hat(Z) hat(Z) - h hat(X), quad "with" quad h = beta^*_h = 1/2 "arctanh"(e^(-2 beta_h)). $
-
 The self-dual point of the classical model maps to the quantum critical point $h = J$, where the system is described by the Ising CFT. The phase diagram in the $(beta_h, beta_v)$ plane has:
 
-- *Ferromagnetic (FM) phase:* Large $beta_h, beta_v$ $arrow.r$ ordered, $angle.l hat(Z) angle.r eq.not 0$.
-- *Paramagnetic (PM) phase:* Small $beta_h, beta_v$ $arrow.r$ disordered, $angle.l hat(Z) angle.r = 0$.
+- *Ferromagnetic (FM) phase:* Large $beta_h, beta_v$ $arrow.r$ ordered, $chevron.l hat(Z) chevron.r eq.not 0$.
+- *Paramagnetic (PM) phase:* Small $beta_h, beta_v$ $arrow.r$ disordered, $chevron.l hat(Z) chevron.r = 0$.
 - *Critical line:* The self-dual curve separating the two phases, on which the theory flows to the Ising CFT in the infrared.
 
 // ========== FIGURE 3: Phase diagram ==========
@@ -520,11 +512,11 @@ The self-dual point of the classical model maps to the quantum critical point $h
   // Critical line label
   content((1.0, 4.2), text(size: 9pt, fill: blue)[critical line])
 
-  // Self-dual point
-  let sdx = 2.1
-  let sdy = 2.1
-  circle((sdx, sdy), radius: 0.1, fill: black)
-  content((sdx + 1.0, sdy - 0.3), text(size: 8pt)[self-dual point \ Ising CFT ($c=1\/2$)])
+  // // Self-dual point
+  // let sdx = 2.1
+  // let sdy = 2.1
+  // circle((sdx, sdy), radius: 0.1, fill: black)
+  // content((sdx + 1.0, sdy - 0.3), text(size: 8pt)[self-dual point \ Ising CFT ($c=1\/2$)])
 
   // Arrows indicating RG flow (schematic)
   // Into FM
@@ -542,8 +534,7 @@ The self-dual point of the classical model maps to the quantum critical point $h
 
 == Remarks
 
-- When the interactions include 3-body or higher-body terms, the corresponding quantum model will have multi-qubit gates, leading to a richer structure (e.g., fracton models).
 
 - The transfer matrix approach generalizes to other classical models. For example, the $q$-state Potts model maps to quantum chains with $S U(q)$ symmetry, and the classical $X Y$ model maps to the quantum rotor model.
 
-- The cylindrical geometry (periodic boundary conditions in the spatial direction) of the classical model maps directly to a quantum system on a ring, where the transfer matrix wraps around to form a cylinder in the tensor-network picture. This geometry is particularly natural for extracting the central charge $c$ from finite-size scaling of the free energy.
+- The cylindrical geometry (periodic boundary conditions in the spatial direction) of the classical model maps directly to a quantum system on a ring, where the transfer matrix wraps around to form a cylinder in the tensor-network picture. Such geometry is particularly natural for extracting the central charge $c$ from finite-size scaling of the free energy.
