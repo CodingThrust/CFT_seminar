@@ -475,7 +475,9 @@ The self-dual point of the classical model maps to the quantum critical point $h
 
 - *Ferromagnetic (FM) phase:* Large $beta_h, beta_v$ $arrow.r$ ordered, $angle.l hat(Z) angle.r eq.not 0$.
 - *Paramagnetic (PM) phase:* Small $beta_h, beta_v$ $arrow.r$ disordered, $angle.l hat(Z) angle.r = 0$.
-- *Critical line:* The self-dual curve separating the two phases, on which the theory flows to the Ising CFT in the infrared.
+- *isotropic line:* The isotropic curve separating the two phases, on which the 
+
+theory flows to the Ising CFT in the infrared.
 
 // ========== FIGURE 3: Phase diagram ==========
 #let fig3 = {
@@ -507,16 +509,11 @@ The self-dual point of the classical model maps to the quantum critical point $h
   content((3.5, 4.2), text(size: 12pt, weight: "bold", fill: red)[FM])
 
   // PM region label
-  content((1.2, 1.2), text(size: 12pt, weight: "bold", fill: rgb("#2196F3"))[PM])
+  content((1.0, 1.5), text(size: 12pt, weight: "bold", fill: rgb("#2196F3"))[PM])
 
   // Critical line label
-  content((1.0, 4.2), text(size: 9pt, fill: blue)[critical line])
+  content((1.0, 4.2), text(size: 9pt, fill: blue)[critical line \ Ising CFT ($c=1\/2)$])
 
-  // // Self-dual point
-  // let sdx = 2.1
-  // let sdy = 2.1
-  // circle((sdx, sdy), radius: 0.1, fill: black)
-  // content((sdx + 1.0, sdy - 0.3), text(size: 8pt)[self-dual point \ Ising CFT ($c=1\/2$)])
 
   // Arrows indicating RG flow (schematic)
   // Into FM
@@ -525,11 +522,17 @@ The self-dual point of the classical model maps to the quantum critical point $h
   // Into PM
   line((1.5, 2.0), (0.8, 1.0), stroke: 0.6pt, mark: (end: "stealth", fill: gray))
   line((2.0, 1.5), (1.0, 0.8), stroke: 0.6pt, mark: (end: "stealth", fill: gray))
+  
+  // Self-dual line
+  line((0.0, 0.0), (4.2, 4.2), stroke: 2pt, mark: (fill: rgb("#f32121")))
+  content((1.0, 2.2), text(size: 8pt)[self-dual line ])
 }
 
 #figure(
   canvas(length: 0.8cm, fig3),
-  caption: [Phase diagram of the 2D classical Ising model in the $beta_h$--$beta_v$ plane. The blue curve is the critical (self-dual) line separating the ferromagnetic (FM) and paramagnetic (PM) phases. At the self-dual point, the system is described by the Ising CFT with central charge $c = 1\/2$. Gray arrows indicate schematic RG flow directions.]
+  caption: [Phase diagram of the 2D classical Ising model in the $beta_h$--$beta_v$ plane. The blue curve is the isotropic spacetime curve, which is also the
+  
+  critical (self-dual) line separating the ferromagnetic (FM) and paramagnetic (PM) phases. At the self-dual point, the system is described by the Ising CFT with central charge $c = 1\/2$. Gray arrows indicate schematic RG flow directions.]
 ) <fig:phase>
 
 == Remarks

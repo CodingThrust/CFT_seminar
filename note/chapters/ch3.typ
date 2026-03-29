@@ -183,7 +183,11 @@ $ T(omega)T(z) = frac(c/2, (z-omega)^4) + frac(2T(omega),(z-omega)^2) + frac(T'(
 similarly the anti-holographic stress-energy tensor $overline(T)$ has the same form with $overline(c)$.
 
 == Mode expansion and the Virasoro algebra
-The Virasoro algebra can be viewed as the Laurent expansion of the stress-energy tensor $T(z)$ in terms of its modes $L_n$:
+Following the path we have dealt with Witt algebra, combined with Ward identity, radial quantization, we want to write down the corresponding infinitesimal change of field due to conformal transformation:
+
+$ delta phi = [Q, phi] = frac(1, 2pi i)integral.cont (d z epsilon(z) R(T(z) phi(omega, overline(omega) ))+ d overline(z) overline(epsilon)(overline(z))R(T(overline(z)) phi(omega, overline(omega) )))) $
+
+the Virasoro algebra can be viewed as the Laurent expansion of the stress-energy tensor $T(z)$ in terms of its modes $L_n$:
 $ T(z) = sum_(n=-infinity)^infinity L_n z^(-n-2) $
 
 A naive dimensional analysis of the OPE of $T(z)T(w)$ leads to the commutation relations of the Virasoro algebra:
@@ -206,6 +210,8 @@ We could compare the Virasoro algebra with the Witt algebra, which is the algebr
   approx sum_n c_n [L_n, phi] + overline(c)_n [overline(L)_n, phi] $],
   [$delta phi = -epsilon(z) partial phi - overline(epsilon)(overline(z)) overline(partial) phi \
   = sum_n c_n l_n phi + overline(c)_n overline(l)_n phi$],
+  [$angle.l T(z)T(0) angle.r = frac(c, 2(z-0)^4)$],
+  [$angle.l T(z)T(0) angle.r = 0$],
   [With central charge $c$ (chiral anomaly)],
   [No central charge],
 )
