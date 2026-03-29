@@ -186,10 +186,9 @@ function ising_partition_function_logZ(Lx::Int, Ly::Int; beta::Real=1.0, J::Real
         
         # Normalize initial MPS
         nrm = norm(boundary)
-        if nrm > 0
-            boundary ./= nrm
-            log_norm_total += log(nrm)
-        end
+        log_norm_total += log(nrm)
+        normalize!(boundary)
+
     
         for y in 2:Ly
             mpo_tensors = Vector{ITensor}(undef, Lx)
@@ -202,23 +201,22 @@ function ising_partition_function_logZ(Lx::Int, Ly::Int; beta::Real=1.0, J::Real
             end
             
             # Normalize each MPO tensor to prevent overflow during apply
-            for x in 1:Lx
-                tnrm = norm(mpo_tensors[x])
-                if tnrm > 0
-                    mpo_tensors[x] ./= tnrm
-                    log_norm_total += log(tnrm)
-                end
-            end
+            # for x in 1:Lx
+            #     tnrm = norm(mpo_tensors[x])
+            #     if tnrm > 0
+            #         mpo_tensors[x] ./= tnrm
+            #         log_norm_total += log(tnrm)
+            #     end
+            # end
             
             Wrow = MPO(mpo_tensors)
             boundary = apply(Wrow, boundary; cutoff=cutoff, maxdim=maxdim)
             
             # Normalize MPS after each row
             nrm = norm(boundary)
-            if nrm > 0
-                boundary ./= nrm
-                log_norm_total += log(nrm)
-            end
+            log_norm_total += log(nrm)
+            normalize!(boundary)
+
         end
 
         # Contract final boundary MPS to scalar
@@ -255,11 +253,9 @@ function ising_partition_function_logZ(Lx::Int, Ly::Int; beta::Real=1.0, J::Real
         
         # Normalize initial MPS
         nrm = norm(boundary)
-        if nrm > 0
-            boundary ./= nrm
-            log_norm_total += log(nrm)
-        end
-    
+        log_norm_total += log(nrm)
+        normalize!(boundary)
+
         # Rows y=2..Ly are MPOs acting on boundary MPS
         for y in 2:Ly
             mpo_tensors = Vector{ITensor}(undef, Lx)
@@ -272,23 +268,21 @@ function ising_partition_function_logZ(Lx::Int, Ly::Int; beta::Real=1.0, J::Real
             end
             
             # Normalize each MPO tensor to prevent overflow during apply
-            for x in 1:Lx
-                tnrm = norm(mpo_tensors[x])
-                if tnrm > 0
-                    mpo_tensors[x] ./= tnrm
-                    log_norm_total += log(tnrm)
-                end
-            end
+            # for x in 1:Lx
+            #     tnrm = norm(mpo_tensors[x])
+            #     if tnrm > 0
+            #         mpo_tensors[x] ./= tnrm
+            #         log_norm_total += log(tnrm)
+            #     end
+            # end
             
             Wrow = MPO(mpo_tensors)
             boundary = apply(Wrow, boundary; cutoff=cutoff, maxdim=maxdim)
             
             # Normalize MPS after each row
             nrm = norm(boundary)
-            if nrm > 0
-                boundary ./= nrm
-                log_norm_total += log(nrm)
-            end
+            log_norm_total += log(nrm)
+            normalize!(boundary)
         end
     
         # Convert final boundary MPS to scalar
@@ -351,7 +345,7 @@ end
 # ---------------- Example ----------------
 function FE_scaling(Llist)
     flis = zeros(length(Llist))
-    time_ratio = 100
+    time_ratio = 200
     for (idx, L) in enumerate(Llist)
         K = log(1+√2)/2
         # centered logZ (i.e. logZ - N_bonds*K), avoids overflow growth
@@ -369,10 +363,11 @@ function FE_scaling(Llist)
     return flis
 end
 
-Llist = collect(6:10)
+Llist = collect(8:12)
 flis = FE_scaling(Llist)
+
 function fig_FE_scaling(flis, Llist)
-    time_ratio = 100
+    time_ratio = 200
     fig = scatter(1 ./(Llist.^2), flis, label="Free energy density", xlabel=L"1/L^2", ylabel=L"F/(L \cdot L_\tau)")
     fit_model(x, p) = p[1] .- π/6*p[2] .*x
     p0 = [1.0, 1.0]
@@ -383,5 +378,7 @@ function fig_FE_scaling(flis, Llist)
 
     return fig
 end
-
+flis, Llist = load("mini_project/Zhaohui/free_energy_data_TN.jld2", "flis", "Llist")
 fig_FE=fig_FE_scaling(flis, Llist)
+savefig(fig_FE, "mini_project/Zhaohui/figs/free_energy_scaling_TN.svg")
+

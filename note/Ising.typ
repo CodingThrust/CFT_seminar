@@ -469,15 +469,51 @@ where $lambda_0$ is the largest eigenvalue of $T$, and the ground-state energy $
 - *Correlation function* $angle.l sigma_i sigma_j angle.r$ in the classical model (note here we need to insert two spin operators among space directions) corresponds to $angle.l hat(Z)_i hat(Z)_j angle.r$ in the quantum model.
 - *Phase diagram:* The 2D classical Ising model has a ferromagnetic (FM) to paramagnetic (PM) phase transition at the critical coupling $K_c = frac(1,2)log(1 + sqrt(2))$. Under the mapping, this corresponds to the quantum phase transition at $(h\/J)_c = 1$ in the transverse-field Ising chain, which is described by the Ising CFT with central charge $c = 1\/2$.
 
-== The anisotropic limit and the phase diagram
+== The phase diagram and two lines
 
-The self-dual point of the classical model maps to the quantum critical point $h = J$, where the system is described by the Ising CFT. The phase diagram in the $(beta_h, beta_v)$ plane has:
+The 2D classical Ising model with different horizontal and vertical couplings ($beta_h eq.not beta_v$) has a rich phase diagram. Two important lines in the $(beta_h, beta_v)$ plane are:
 
-- *Ferromagnetic (FM) phase:* Large $beta_h, beta_v$ $arrow.r$ ordered, $angle.l hat(Z) angle.r eq.not 0$.
-- *Paramagnetic (PM) phase:* Small $beta_h, beta_v$ $arrow.r$ disordered, $angle.l hat(Z) angle.r = 0$.
-- *isotropic line:* The isotropic curve separating the two phases, on which the 
+1. *Self-dual line (Kramers-Wannier duality):* The 2D Ising model satisfies a remarkable duality. Under the Kramers-Wannier transformation, the partition function maps to that of a dual model with couplings $tilde(beta)_h, tilde(beta)_v$ satisfying
+   $ sinh(2 beta_h) sinh(2 tilde(beta)_v) = 1, quad sinh(2 beta_v) sinh(2 tilde(beta)_h) = 1. $
+   The system is _self-dual_ when $(beta_h, beta_v) = (tilde(beta)_h, tilde(beta)_v)$, which gives the condition:
+   $ sinh(2 beta_h) sinh(2 beta_v) = 1. $
+   This defines a curve in the $(beta_h, beta_v)$ plane. Since the phase transition must be preserved under duality, and there is only one transition, the *critical line must lie exactly on the self-dual curve*.
 
-theory flows to the Ising CFT in the infrared.
+2. *Isotropic spacetime line:* This is simply the diagonal $beta_h = beta_v$, corresponding to equal couplings in both directions.
+
+The *critical point of the isotropic spacetime model* is the intersection of these two lines: setting $beta_h = beta_v = K$ in the self-dual condition gives
+$ sinh^2(2 K_c) = 1 quad arrow.r.double quad K_c = frac(1,2) ln(1 + sqrt(2)) approx 0.4407. $
+
+#v(0.5em)
+#align(center)[
+  #table(
+    columns: 3,
+    align: (left, center, left),
+    stroke: 0.5pt,
+    inset: 8pt,
+    table.header(
+      [*Concept*], [*Definition*], [*Physical meaning*],
+    ),
+    [Self-dual line \ (critical line)], 
+    [$sinh(2 beta_h) sinh(2 beta_v) = 1$], 
+    [Hyperbolic curve; system maps to itself under \ Kramers-Wannier duality. Phase transition \ occurs here $arrow.r$ Ising CFT ($c = 1\/2$).],
+    
+    [Isotropic line], 
+    [$beta_h = beta_v$], 
+    [Diagonal line; equal horizontal and vertical \ couplings (standard square lattice Ising).],
+    
+    [Critical point \ (isotropic model)], 
+    [$K_c = frac(1,2) ln(1 + sqrt(2))$], 
+    [Intersection of the two lines; the familiar \ critical temperature of the 2D Ising model.],
+  )
+]
+#v(0.5em)
+
+The full phase diagram has:
+
+- *Ferromagnetic (FM) phase:* Above and to the right of the self-dual curve; large $beta_h, beta_v$ $arrow.r$ ordered, $angle.l hat(Z) angle.r eq.not 0$.
+- *Paramagnetic (PM) phase:* Below and to the left of the self-dual curve; small $beta_h, beta_v$ $arrow.r$ disordered, $angle.l hat(Z) angle.r = 0$.
+- *Critical line:* The self-dual curve $sinh(2 beta_h) sinh(2 beta_v) = 1$ separates the two phases. Every point on this curve is a critical point belonging to the Ising CFT universality class with central charge $c = 1\/2$.
 
 // ========== FIGURE 3: Phase diagram ==========
 #let fig3 = {
@@ -489,50 +525,55 @@ theory flows to the Ising CFT in the infrared.
   content((5.5, -0.4), text(size: 10pt)[$beta_h$])
   content((-0.4, 5.5), text(size: 10pt)[$beta_v$])
 
-  // Critical curve (self-dual line, roughly hyperbolic)
+  // Self-dual curve: sinh(2βh)sinh(2βv) = 1
+  // This is a hyperbolic-like curve; we approximate it manually
   let pts = ()
   for i in range(0, 41) {
     let t = i / 40.0
     let x = 0.3 + 4.5 * t
     let y = 0.3 + 4.5 * (1.0 - t)
-    // Curve it slightly: use a convex shape
-    let curve-x = x - 1.2 * t * (1.0 - t)
-    let curve-y = y - 1.2 * t * (1.0 - t)
+    // Make it convex (hyperbolic shape)
+    let curve-x = x - 1.5 * t * (1.0 - t)
+    let curve-y = y - 1.5 * t * (1.0 - t)
     pts.push((curve-x, curve-y))
   }
-  // Draw the critical curve
+  // Draw the self-dual (critical) curve
   for i in range(pts.len() - 1) {
     line(pts.at(i), pts.at(i + 1), stroke: 2pt + blue)
   }
 
+  // Isotropic line: βh = βv (diagonal)
+  line((0.0, 0.0), (4.8, 4.8), stroke: (paint: red, thickness: 1.5pt, dash: "dashed"))
+  
+  // Critical point (intersection) - approximately at (2, 2) on this scale
+  let kc = 2.0
+  circle((kc, kc), radius: 0.12, fill: black)
+  content((kc + 0.8, kc + 0.3), text(size: 8pt)[$K_c = frac(1,2)ln(1+sqrt(2))$])
+
   // FM region label
-  content((3.5, 4.2), text(size: 12pt, weight: "bold", fill: red)[FM])
+  content((3.8, 4.2), text(size: 12pt, weight: "bold", fill: red)[FM])
 
   // PM region label
-  content((1.0, 1.5), text(size: 12pt, weight: "bold", fill: rgb("#2196F3"))[PM])
+  content((1.2, 1.2), text(size: 12pt, weight: "bold", fill: rgb("#2196F3"))[PM])
 
   // Critical line label
-  content((1.0, 4.2), text(size: 9pt, fill: blue)[critical line \ Ising CFT ($c=1\/2)$])
-
+  content((0.8, 4.0), text(size: 8pt, fill: blue)[self-dual curve \ (critical line)])
+  
+  // Isotropic line label
+  content((4.5, 3.0), text(size: 8pt, fill: red)[isotropic line \ $beta_h = beta_v$])
 
   // Arrows indicating RG flow (schematic)
   // Into FM
-  line((3.8, 3.0), (4.2, 3.8), stroke: 0.6pt, mark: (end: "stealth", fill: gray))
-  line((3.0, 3.8), (3.8, 4.5), stroke: 0.6pt, mark: (end: "stealth", fill: gray))
+  line((4.0, 3.2), (4.4, 4.0), stroke: 0.6pt, mark: (end: "stealth", fill: gray))
+  line((3.2, 4.0), (4.0, 4.6), stroke: 0.6pt, mark: (end: "stealth", fill: gray))
   // Into PM
-  line((1.5, 2.0), (0.8, 1.0), stroke: 0.6pt, mark: (end: "stealth", fill: gray))
-  line((2.0, 1.5), (1.0, 0.8), stroke: 0.6pt, mark: (end: "stealth", fill: gray))
-  
-  // Self-dual line
-  line((0.0, 0.0), (4.2, 4.2), stroke: 2pt, mark: (fill: rgb("#f32121")))
-  content((1.0, 2.2), text(size: 8pt)[self-dual line ])
+  line((1.8, 1.8), (1.0, 1.0), stroke: 0.6pt, mark: (end: "stealth", fill: gray))
+  line((1.5, 2.2), (0.8, 1.2), stroke: 0.6pt, mark: (end: "stealth", fill: gray))
 }
 
 #figure(
   canvas(length: 0.8cm, fig3),
-  caption: [Phase diagram of the 2D classical Ising model in the $beta_h$--$beta_v$ plane. The blue curve is the isotropic spacetime curve, which is also the
-  
-  critical (self-dual) line separating the ferromagnetic (FM) and paramagnetic (PM) phases. At the self-dual point, the system is described by the Ising CFT with central charge $c = 1\/2$. Gray arrows indicate schematic RG flow directions.]
+  caption: [Phase diagram of the 2D classical Ising model in the $beta_h$--$beta_v$ plane. The blue curve is the self-dual line $sinh(2 beta_h) sinh(2 beta_v) = 1$, which is also the critical line separating the ferromagnetic (FM) and paramagnetic (PM) phases. The red dashed line is the isotropic line $beta_h = beta_v$. Their intersection (black dot) is the critical point of the isotropic model, $K_c = frac(1,2)ln(1+sqrt(2))$. The entire critical line is described by the Ising CFT with $c = 1\/2$. Gray arrows indicate schematic RG flow directions.]
 ) <fig:phase>
 
 == Remarks

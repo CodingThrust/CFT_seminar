@@ -19,9 +19,9 @@ And combined with the conservation law $partial^mu T_(mu nu) = 0$, we can derive
 === Ward identities
 The Ward identities are the consequences of the symmetries of the theory, which can be derived from the conservation of the stress-energy tensor. They relate the correlation functions of the stress-energy tensor with the correlation functions of the primary fields. The Ward identities can be used to compute the correlation functions of the primary fields, which are the building blocks of the CFT.
 
-$ delta_(epsilon) Phi(z) = [Q_(epsilon), Phi(z)] $
+$ delta_(epsilon) Phi(z) = -[Q_(epsilon), Phi(z)] $
 
-where $Q_(epsilon)$ is the conformal charge associated with the infinitesimal conformal transformation $epsilon(z)$. The Ward identities can be derived from the conservation of the stress-energy tensor and the definition of the primary fields. They can be used to compute the correlation functions of the primary fields, which are the building blocks of the CFT.
+where $Q_(epsilon)$ is the conformal charge associated with the infinitesimal conformal transformation $epsilon(z)$, defined as $Q_(epsilon) = frac(1, 2pi i)integral.cont d z epsilon T$. The Ward identities can be derived from the conservation of the stress-energy tensor and the definition of the primary fields. They can be used to compute the correlation functions of the primary fields, which are the building blocks of the CFT.
 
 === Radial quantization
 Then we have introduced the radial quantization, basically map the complex plane to a cylinder, where the radial direction corresponds to the time direction. In this way, we can define the in- and out-states as the states at $r -> 0$ and $r -> infinity$, respectively. The radial quantization allows us to compute correlation functions and commutators in a more convenient way.
@@ -139,7 +139,7 @@ From above figure, we can see that the time translation $t arrow.r t+lambda$ alo
   [Spectrum of $S$: conformal spin $s_n$],
 )
 
-The radial quantization allows us to compute the commutator in the form: $ [A, B] = integral.cont_0 d w integral.cont_w d z a(z) b(w)$, where $a(z)$ and $b(w)$ are $integral.cont a(z) d z$ and $integral.cont b(w) d w$, respectively. The contour integrals are taken around the origin and the point $w$, respectively.
+The radial quantization allows us to compute the commutator in the form: $ [A, B] = integral.cont_0 d w integral.cont_w d z a(z) b(w)$, where $a(z)$ and $b(w)$ are $integral.cont a(z) d z$ and $integral.cont b(w) d w$, respectively. The contour integrals are taken around the origin and the point $w$, respectively. This formula allows us to translate the commutator of two operators into the correlation function of the corresponding fields, which can be computed using the Ward identities, and vice versa. 
 
 === Primary fields
 The primary fields are the fields that transform covariantly under the conformal transformations. They are defined as the fields that satisfy the following transformation law under the conformal transformation $z arrow.r f(z)$:
@@ -158,7 +158,7 @@ So here we can also list a table for the different definition of primary fields:
     [*Description*],
   ),
   [Transformation law under conformal transformation],
-  [$phi(z) arrow.r (partial f(z))^h (partial overline(f)(overline(z)))^h overline(phi)(overline(z))$],
+  [$phi(z) arrow.r (partial f(z))^h (partial overline(f)(overline(z)))^overline(h) overline(phi)(overline(z))$],
   [Transformation under infinitesimal conformal transformation $z arrow.r z+ epsilon(z)$],
   [$delta_(epsilon) phi(z, overline(z)) = (h partial epsilon + epsilon partial + overline(h)overline(partial) overline(epsilon)+ overline(epsilon) overline(partial)) phi(z, overline(z))$],
   [Correlation with the stress-energy tensor],
@@ -167,6 +167,8 @@ So here we can also list a table for the different definition of primary fields:
   [$angle.l phi(z_1, overline(z)_1) phi(z_2, overline(z)_2) angle.r = frac(C,(z_1 - z_2)^(Delta + s) (overline(z)_1 - overline(z)_2)^(Delta - s))$],
   [Highest-weight states of the Virasoro algebra (operator-state correspondence)],
   [$L_n |h> = 0$ for $n > 0$, $L_0 |h> = h |h>$],
+  [Correlation under transformation],
+  [$angle.l phi(z_1^(prime)) phi(z_2^(prime)) angle.r = (partial f(z))^h (partial overline(f)(overline(z)))^overline(h)  angle.l phi(z_1) phi(z_2) angle.r$],
 )
 
 == Outline of this chapter
@@ -177,21 +179,27 @@ So here we can also list a table for the different definition of primary fields:
 - Descendant fields: $[L_n, partial^k phi(z)] = z^n (z partial + (n+1) (h+k)) partial^k phi(z)$
 
 == The central charge
-The central charge, initially introduced in the context of $T T$ correlation's anomaly part:
+The central charge, initially introduced in the context of $T T$ correlation's anomaly part (this formula we will derive later in free boson and free fermion part):
 $ T(omega)T(z) = frac(c/2, (z-omega)^4) + frac(2T(omega),(z-omega)^2) + frac(T'(omega),z-omega) $
 
-similarly the anti-holographic stress-energy tensor $overline(T)$ has the same form with $overline(c)$.
+similarly the anti-holographic stress-energy tensor $overline(T)$ has the same form with $overline(c)$, which means that the stress-energy tensor is not primary field, but a quasi-primary field. 
 
 == Mode expansion and the Virasoro algebra
-Following the path we have dealt with Witt algebra, combined with Ward identity, radial quantization, we want to write down the corresponding infinitesimal change of field due to conformal transformation:
+Following the path we have dealt with Witt algebra, combined with *Ward identity, radial quantization*, we want to write down the corresponding infinitesimal change of field due to conformal transformation:
 
-$ delta phi = [Q, phi] = frac(1, 2pi i)integral.cont (d z epsilon(z) R(T(z) phi(omega, overline(omega) ))+ d overline(z) overline(epsilon)(overline(z))R(T(overline(z)) phi(omega, overline(omega) )))) $
+$ delta phi = -[Q, phi] = frac(1, 2pi i)integral.cont (d z epsilon(z) R(T(z) phi(omega, overline(omega) ))+ d overline(z) overline(epsilon)(overline(z))R(T(overline(z)) phi(omega, overline(omega) )))) $
 
 the Virasoro algebra can be viewed as the Laurent expansion of the stress-energy tensor $T(z)$ in terms of its modes $L_n$:
 $ T(z) = sum_(n=-infinity)^infinity L_n z^(-n-2) $
 
-A naive dimensional analysis of the OPE of $T(z)T(w)$ leads to the commutation relations of the Virasoro algebra:
-$ [L_m, L_n] = (m-n)L_(m+n) + frac(c, 12) m(m^2-1) delta_(m+n,0) $
+similarly for $epsilon(z) = sum_n c_n z^(n+1)$. Then the conformal charge $Q_(epsilon) = frac(1, 2pi i)integral.cont d z epsilon(z) T(z) = sum_n c_n L_n$. Thus we can rewrite the infinitesimal change of field as:
+
+$ delta phi = -[Q, phi] = sum_n c_n [L_n, phi] + overline(c)_n [overline(L)_n, phi] $
+
+
+A complex analysis of the OPE of $T(z)T(w)$ leads to the commutation relations of the Virasoro algebra:
+$ [L_m, L_n] = frac(1, (2pi i)^2)integral.cont_0 d z integral.cont_z d w z^(m+1) w^(n+1) {frac(c/2, (z-omega)^4) + frac(2T(omega),(z-omega)^2) + frac(T'(omega),z-omega)} =
+\ (m-n)L_(m+n) + frac(c, 12) m(m^2-1) delta_(m+n,0) $
 
 We could compare the Virasoro algebra with the Witt algebra, which is the algebra of the generators of conformal transformations without the central extension in below table:
 
@@ -207,7 +215,7 @@ We could compare the Virasoro algebra with the Witt algebra, which is the algebr
   [$[L_m, L_n] = (m-n)L_(m+n) + frac(c, 12) m(m^2-1) delta_(m+n,0)$],
   [$[l_m, l_n] = (m-n)l_(m+n)$],
   [$delta phi = frac(1, 2pi i)integral.cont (d z epsilon(z) R(T(z) phi(omega, overline(omega) ))+ d overline(z) overline(epsilon)(overline(z))R(T(overline(z)) phi(omega, overline(omega) )))) \
-  approx sum_n c_n [L_n, phi] + overline(c)_n [overline(L)_n, phi] $],
+  = sum_n c_n [L_n, phi] + overline(c)_n [overline(L)_n, phi] $],
   [$delta phi = -epsilon(z) partial phi - overline(epsilon)(overline(z)) overline(partial) phi \
   = sum_n c_n l_n phi + overline(c)_n overline(l)_n phi$],
   [$angle.l T(z)T(0) angle.r = frac(c, 2(z-0)^4)$],
@@ -223,10 +231,10 @@ $ H = frac(2pi, L)(L_0 + overline(L)_0 - frac(c, 12)) \
 P = frac(2pi, L)(L_0 -  overline(L)_0) $
 
 == In- and out-states
-The most important part of Hilbert space construction is to define vacuum states, from which we can generate the entire Hilbert space by applying the raising operators. From the perspective of QFT and interaction picture, the vacuum state is the asymptotic state at $t -> -infinity$ and $t ->  +infinity$, where the influence of the interacting fields vanishes. They are called the in-states and out-states, respectively. In CFT, we can also define the in- and out-states as the highest-weight states of the Virasoro algebra.
+The most important part of Hilbert space construction is to define vacuum states, from which we can generate the entire Hilbert space by applying the raising operators. From the perspective of QFT and interaction picture, the system have different ground states. A natural choice for the vacuum state is the asymptotic state at $t -> -infinity$ and $t ->  +infinity$, where the influence of the interacting fields vanishes. They are called the in-states and out-states, respectively. In CFT, we can also define the in- and out-states as the highest-weight states of the Virasoro algebra.
 
 The in-states are 
-$ |phi_(text(i n)) angle.r  = lim_(z, overline(z) arrow.r 0) phi(z, overline(z) ) |0 angle.r$
+$ |phi_(text(i n)) angle.r  = lim_(z, overline(z) arrow.r 0) phi(z, overline(z) ) |0 angle.r $
 
 As for the out-states, we can define them as the states at $z, overline(z) arrow.r infinity$, which can be obtained by applying the conformal transformation $z arrow.r 1/z$ to the in-states:
 $ |phi_(text(o u t)) angle.r  = lim_(z, overline(z) arrow.r infinity) phi(z, overline(z) ) |0 angle.r = lim_(z, overline(z) arrow.r 0) phi(1/z, 1/overline(z) ) |0 angle.r$
@@ -234,21 +242,23 @@ $ |phi_(text(o u t)) angle.r  = lim_(z, overline(z) arrow.r infinity) phi(z, ove
 
 In CFT, we have two types of vacuum states: the in-states and the out-states. The in-states are defined as the states that are annihilated by all positive modes $L_n$ with $n > 0$, while the out-states are defined as the states that are annihilated by all negative modes $L_n$ with $n < 0$. The in- and out-states are also called the highest-weight states of the Virasoro algebra
 
-the in- and out-states. We will see that the in- and out-states are defined as the highest-weight states of the Virasoro algebra, which are annihilated by all positive modes $L_n$ with $n > 0$. The highest-weight states are also called primary states, and they correspond to primary fields in the CFT. The descendants of the primary states are generated by acting with the negative modes $L_{-n}$ on the primary states, and they correspond to descendant fields in the CFT.
+the in- and out-states. We will see that the in- and out-states are defined as the highest-weight states of the Virasoro algebra, which are annihilated by all positive modes $L_n$ with $n > 0$. The highest-weight states are also called primary states, and they correspond to primary fields in the CFT. The descendants of the primary states are generated by acting with the negative modes $L_(-n)$ on the primary states, and they correspond to descendant fields in the CFT.
 
 == Highest-weight states
 The vacuum state $|0 angle.r$ must be invariant under the global conformal transformations generated by $L_(-1), L_0, L_1$, which means that it must satisfy the following conditions:
 $ L_(-1) |0 angle.r = L_0 |0 angle.r = L_1 |0 angle.r = 0 $
 
-Thus the asymptotic in-states 
-$
-|h, overline(h) angle.r = phi(0, 0)|0 angle.r $
+Thus for the asymptotic in-states 
+$ |h, overline(h) angle.r = phi(0, 0)|0 angle.r $
 
-We conclude that 
-$ L_0|h,overline(h) angle.r = h|h, overline(h) angle.r,  overline(L)_0|h,overline(h) angle.r = overline(h)|h, overline(h) angle.r $
+
+We could utilize the commutation relations $[L_n, phi] = h(n+1)omega^n phi + omega^(n+1)partial phi$, thus:
+$ L_0|h,overline(h) angle.r = L_0 phi(0,0)|h, overline(h) angle.r = (phi(0,0) L_0 + h)|h, overline(h) angle.r = h|h, overline(h) angle.r, \
+ overline(L)_0|h,overline(h) angle.r = overline(h)|h, overline(h) angle.r $
 == Descendants fields
 
-Thus by applying the negative modes $L_{-n}$ on the primary states, we can generate the descendant states, which have conformal weights that are greater than the conformal weight of the primary state. The descendant fields correspond to the descendant states in the Hilbert space, and they can be obtained by applying the Virasoro generators to the primary fields.
+Thus by applying the negative modes $L_(-n)$ on the primary states, we can generate the descendant states, which have conformal weights that are greater than the conformal weight of the primary state. The descendant fields correspond to the descendant states in the Hilbert space, and they can be obtained by applying the Virasoro generators to the primary fields. They have conformal weights that raise by integers compared to the primary fields
+$ L_(-n)|h, overline(h) angle.r = L_(-n)L_0|h, overline(h) angle.r = (L_0L_(-n)+n L_(-n))|h, overline(h) angle.r = (h+n)|h, overline(h) angle.r $
 == The structure of the Hilbert space
 The Hilbert space of a CFT can be constructed by starting from the highest-weight states (primary states) and applying the negative modes of the Virasoro algebra to generate the descendant states. The highest-weight states are annihilated by all positive modes $L_n$ with $n > 0$, and they are eigenstates of $L_0$ with eigenvalue $h$, which is the conformal weight of the corresponding primary field. The descendant states are generated by acting with the negative modes $L_(-n)$ on the highest-weight states, and they have conformal weights that are greater than the conformal weight of the primary state. The structure of the Hilbert space can be visualized as a tower of states, where the primary state is at the bottom and the descendant states are above it, with increasing conformal weights.
 
@@ -277,6 +287,8 @@ The stress-energy tensor for the free boson theory can be derived from the actio
 $ T(z) = -frac(1,2) :partial phi(z) partial phi(z): $
 $ overline(T)(overline(z)) = -frac(1,2) :overline(partial) phi(overline(partial)) overline(partial) phi(overline(z)): $
 The free boson theory has a central charge of $c = 1$.
+
+Note the normal ordering in the stress-energy tensor, which is necessary to remove the singularity in the OPE of $partial phi(z) partial phi(w)$, which has a singular term $frac(1, (z-w)^2)$.
 
 == The free fermions
 The free fermion theory is described by a fermionic field $psi(z)$ with the action:
