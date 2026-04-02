@@ -172,7 +172,6 @@ where $h$ and $overline(h)$ are the conformal weights of the primary field $phi(
 - Primary fields and operator-state correspondence: $[L_n, phi(z)] = z^n (z partial + (n+1) h) phi(z)$
 - Relation between the generators on the cylinder and complex plane: $H = frac(2pi, L)(L_0 + overline(L)_0 - frac(c, 12))$, $P = frac(2pi, L)(L_0 -  overline(L)_0)$
 - Highest-weight states: $L_n |h> = 0$ for $n > 0$, $L_0 |h> = h |h>$
-- Descendant fields: $[L_n, partial^k phi(z)] = z^n (z partial + (n+1) (h+k)) partial^k phi(z)$
 
 == The central charge
 The central charge, initially introduced in the context of $T T$ correlation's anomaly part (this formula we will derive later in free boson and free fermion part):
@@ -399,59 +398,6 @@ in terms of $Delta$ and $s$, color-coded by conformal tower, showing the locatio
   caption: [Illustration of the action of the ladder operators (Virasoro generators) on the energy eigenstates of the Ising CFT Hamiltonian belonging to the $I$ conformal tower. Two possible paths from ($Delta = 4,S= 0$) to ($Delta = 4,S=−4$) are shown, as is the annihilation of the quasiprimary state $| Delta = 4,S= 0 angle.r$ by $overline(L)_(+1)$ and $L_(+1)$.],
 ) <ladder_operation>
 =
-
-== The free bosons
-Here we review the basic properties of free bosons, which are the simplest example of CFTs. The free boson theory is described by a scalar field $X(z, overline(z))$ with the action:
-$ S = frac(1,2pi) integral d^2z partial X overline(partial) X $
-
-We know that the propagator of the free boson field is given by:
-$ angle.l X(z, overline(z)) X(w, overline(w)) angle.r = -frac(1, 2) ln |z-w| $
-
-From which we can derive its derivative's propagator:
-$ angle.l partial X(z) partial X(w) angle.r = - frac(1, (z-w)^2),  $
-thus the $partial X$ is primary field with conformal weight $(h, overline(h)) = (1,0)$.
-
-The stress-energy tensor for the free boson theory can be derived from the action using the Noether procedure, and it is given by:
-$ T(z) = -frac(1,2) :partial X(z) partial X(z): $
-$ overline(T)(overline(z)) = -frac(1,2) :overline(partial) X(overline(partial)) overline(partial) X(overline(z)): $
-
-The reason we use normal ordering in the stress-energy tensor is that the product of two fields at the same point is singular, and normal ordering removes this singularity by subtracting the vacuum expectation value. The OPE of $partial X(z) partial X(w)$ has a singular term $frac(1, (z-w)^2)$, which leads to a central charge of $c = 1$ for the free boson theory.
-
-The free boson theory has a central charge of $c = 1$.
-
-Note the normal ordering in the stress-energy tensor, which is necessary to remove the singularity in the OPE of $partial X(z) partial X(w)$, which has a singular term $frac(1, (z-w)^2)$.
-
-The mode expansion of the free boson field $X(z, overline(z))$ can be written as:
-$ X(z, overline(z)) = x_0 -  p_0 ln z overline(z) + i sum_(n != 0) frac(1, n) (a_n z^(-n) + overline(a)_n overline(z)^(-n)) $
-where $x_0$ and $p_0$ are the zero modes, and $a_n$ and $overline(a)_n$ are the oscillatory modes. The commutation relations for the modes are given by:
-$ [x_0, p_0] = i, [a_n, a_m] = [overline(a)_n, overline(a)_m] = 0, [a_n, overline(a)_m] = delta_(n,-m) $
-
-=== PBC
-If we consider the free boson theory on a circle of circumference $L$, we need to impose periodic boundary conditions on the field $X(z, overline(z))$, which means that $X(z+L, overline(z)+L) = X(z, overline(z))$. This leads to the quantization of the zero modes and the oscillatory modes, and the spectrum of the theory becomes discrete. The mode expansion of the free boson field on a circle can be written as:
-$ X(z, overline(z)) = x_0 -  p_0 ln z overline(z) + i sum_(n != 0) frac(1, n) (a_n e^(-2pi i n z / L) + overline(a)_n e^(2pi i n overline(z) / L)) $
-where the zero modes $x_0$ and $p_0$ are quantized, and the oscillatory modes $a_n$ and $overline(a)_n$ are also quantized with integer values of $n$. The spectrum of the free boson theory on a circle can be computed using the mode expansion and the commutation relations, and it consists of a tower of states with increasing conformal weights.
-=== APBC
-But if we consider the free boson theory on a circle with anti-periodic boundary conditions, which means that $X(z+L, overline(z)+L) = -X(z, overline(z))$, the mode expansion of the free boson field becomes:
-$ X(z, overline(z)) = x_0 -  p_0 ln z overline(z) + i sum_(n in Z + frac(1, 2)) frac(1, n) (a_n e^(-2pi i n z / L) + overline(a)_n e^(2pi i n overline(z) / L)) $
-where the oscillatory modes $a_n$ and $overline(a)_n$ are now quantized with half-integer values of $n$. The spectrum of the free boson theory with anti-periodic boundary conditions can also be computed using the mode expansion and the commutation relations, and it consists of a different tower of states with increasing conformal weights compared to the periodic case.
-=== Compactification
-Then to consider the compactified free boson theory, we need to impose the condition that the field $X(z, overline(z))$ takes values on a circle of radius $R$, which means that $X(z, overline(z))$ is identified with $X(z, overline(z)) + 2pi R$. This leads to the quantization of the zero modes and the oscillatory modes, and the spectrum of the theory becomes discrete. The mode expansion of the compactified free boson field can be written as:
-$ X(z, overline(z)) = x_0 -  p_0 ln z overline(z) + i sum_(n != 0) frac(1, n) (a_n z^(-n) + overline(a)_n overline(z)^(-n)) $
-where the zero modes $x_0$ and $p_0$ are quantized with integer values of $n$ and the oscillatory modes $a_n$ and $overline(a)_n$ are also quantized with integer values of $n$. The spectrum of the compactified free boson theory can be computed using the mode expansion and the commutation relations, and it consists of a tower of states with increasing conformal weights, which are determined by the radius $R$ of the compactification. The compactified free boson theory has a rich structure, and it can be used to describe a wide range of physical systems, including the low-energy effective theory of a one-dimensional quantum system with a gapless spectrum, and the worldsheet theory of a string propagating in a compactified target space.
-
-=== $bb(Z)_2$ orbifold
-Finally to consider the $bb(Z)_2$ orbifold of the free boson theory, we need to impose the condition that the field $X(z, overline(z))$ is invariant under the transformation $X(z, overline(z)) arrow.r -X(z, overline(z))$. This leads to the quantization of the zero modes and the oscillatory modes, and the spectrum of the theory becomes discrete. The mode expansion of the $bb(Z)_2$ orbifold of the free boson field can be written as:
-$ X(z, overline(z)) = x_0 -  p_0 ln z overline(z) + i sum_(n != 0) frac(1, n) (a_n z^(-n) + overline(a)_n overline(z)^(-n)) $
-where the zero modes $x_0$ and $p_0$ are quantized with integer values of $n$ and the oscillatory modes $a_n$ and $overline(a)_n$ are also quantized with integer values of $n$. The spectrum of the $bb(Z)_2$ orbifold of the free boson theory can be computed using the mode expansion and the commutation relations, and it consists of a tower of states with increasing conformal weights, which are determined by the orbifold projection. The $bb(Z)_2$ orbifold of the free boson theory has a rich structure, and it can be used to describe a wide range of physical systems, including the low-energy effective theory of a one-dimensional quantum system with a gapless spectrum, and the worldsheet theory of a string propagating in an orbifold target space.
-
-== The free fermions
-The massless free fermion theory is described by a fermionic field $psi(z)$ with the action:
-$ S = frac(1,8pi) integral d^2z psi overline(partial) psi + overline(psi) partial overline(psi) $
-The stress-energy tensor for the free fermion theory can be derived from the action using the Noether procedure, and it is given by:
-$ T(z) = -frac(1,2) :psi(z) partial psi(z): $
-$ overline(T)(overline(z)) = -frac(1,2) :overline(partial) psi(overline(z)) overline(partial) psi(overline(z)): $
-The free fermion theory has a central charge of $c = 1/2$.
-
 
 
 == Duality and the bootstrap
