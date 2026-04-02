@@ -129,3 +129,113 @@ $ L_n = frac(1,2) sum_r (r + frac(n,2)) :psi_(n-r) psi_r: $
 In the NS sector, the vacuum $|0 angle.r$ satisfies:
 $ psi_r |0 angle.r = 0 quad "for" r > 0 $
 $ L_n |0 angle.r = 0 quad "for" n >= -1 $
+
+== Correspondence with the Ising model
+
+The free fermion theory with $c = 1\/2$ is intimately connected to the 2D classical Ising model at criticality and the 1D quantum transverse-field Ising chain. This correspondence provides a powerful tool for understanding critical phenomena.
+
+=== The Jordan-Wigner transformation
+
+The 1D quantum Ising Hamiltonian can be exactly solved via the *Jordan-Wigner transformation*, which maps spin operators to fermion operators:
+$ c_j = (product_(k<j) sigma_k^z) sigma_j^-, quad c_j^dagger = (product_(k<j) sigma_k^z) sigma_j^+ $
+
+where $sigma_j^(plus.minus) = (sigma_j^x plus.minus i sigma_j^y)\/2$. The string of $sigma^z$ operators ensures the correct anticommutation relations:
+$ {c_j, c_k^dagger} = delta_(j k), quad {c_j, c_k} = {c_j^dagger, c_k^dagger} = 0 $
+
+Under this transformation, the transverse-field Ising Hamiltonian:
+$ H = -J sum_j sigma_j^z sigma_(j+1)^z - h sum_j sigma_j^x $
+
+becomes a quadratic fermion Hamiltonian:
+$ H = -J sum_j (c_j^dagger - c_j)(c_(j+1)^dagger + c_(j+1)) - h sum_j (2 c_j^dagger c_j - 1) $
+
+This can be diagonalized by a Bogoliubov transformation, yielding the exact spectrum.
+
+=== Critical point and conformal field theory
+
+At the critical point $h = J$, the system becomes gapless and the low-energy physics is described by a conformal field theory. In the continuum limit, the lattice fermion operators become the chiral fermion fields:
+$ c_j -> sqrt(a) (psi(x) + overline(psi)(x)), quad c_j^dagger -> sqrt(a) (psi(x) - overline(psi)(x)) $
+
+where $a$ is the lattice spacing. The resulting continuum theory is precisely the free Majorana fermion CFT with $c = 1\/2$.
+
+=== Primary fields of the Ising CFT
+
+The Ising CFT has three primary fields:
+
+#table(
+  columns: 4,
+  align: (center, center, center, left),
+  stroke: 0.6pt,
+  inset: 8pt,
+  table.header(
+    [*Field*], [*$h$*], [*$overline(h)$*], [*Physical meaning*],
+  ),
+  [$bb(1)$], [$0$], [$0$], [Identity operator],
+  [$epsilon$], [$1\/2$], [$1\/2$], [Energy density $sigma_j^z sigma_(j+1)^z$],
+  [$sigma$], [$1\/16$], [$1\/16$], [Spin/order parameter $sigma_j^x$],
+)
+
+The fermion field $psi$ itself is *not* a local operator in the spin language due to the Jordan-Wigner string, but $epsilon = i overline(psi) psi$ is local and corresponds to the energy density.
+
+The spin field $sigma$ with $h = overline(h) = 1\/16$ creates a branch cut for the fermion (changes boundary conditions from NS to R sector), which reflects the non-local nature of the order parameter in terms of fermions.
+
+=== Finite-size scaling and central charge extraction
+
+The central charge can be extracted from finite-size scaling of the ground state energy or free energy. For a system of size $L$ with periodic boundary conditions:
+
+*Ground state energy scaling (quantum system):*
+$ E_0(L) = epsilon_infinity L - frac(pi c, 6 L) + O(1\/L^2) $
+
+where $epsilon_infinity$ is the bulk energy density and $c$ is the central charge.
+
+*Free energy scaling (classical system on cylinder):*
+$ frac(F, L dot L_tau) = f_infinity - frac(pi c, 6 L^2) + O(1\/L^3) $
+
+where $L$ is the circumference (periodic direction) and $L_tau >> L$ is the length.
+
+=== Numerical verification
+
+We verify the central charge $c = 1\/2$ through two complementary approaches:
+
+*1. Ground state energy scaling (exact diagonalization):*
+
+By diagonalizing the quantum Ising Hamiltonian for various system sizes $L$ and fitting the ground state energy to:
+$ E_0(L) = epsilon_infinity L - frac(pi c, 6 L) $
+
+we extract $c approx 0.5$.
+
+#figure(
+  image("../../mini_project/Zhaohui/figs/gse_scaling.svg", width: 80%),
+  caption: [Ground state energy scaling of the critical transverse-field Ising chain. The linear fit of $E_0(L) + epsilon_infinity L$ vs. $1\/L$ yields a slope of $-pi c\/6$ with $c approx 0.5$, confirming the Ising CFT central charge.],
+) <fig:gse_scaling>
+
+*2. Free energy scaling (tensor network contraction):*
+
+By computing the partition function of the 2D classical Ising model on a cylinder geometry using boundary MPS methods and fitting the free energy density to:
+$ frac(F, L dot L_tau) = f_infinity - frac(pi c, 6 L^2) $
+
+we again extract $c approx 0.5$.
+
+#figure(
+  image("../../mini_project/Zhaohui/figs/free_energy_scaling_TN.svg", width: 80%),
+  caption: [Free energy density scaling of the 2D classical Ising model at criticality on a cylinder, computed via tensor network contraction. The fit to $f = f_infinity - pi c \/ (6 L^2)$ yields $c approx 0.5$, confirming the equivalence to the free fermion CFT.],
+) <fig:free_energy_scaling>
+
+=== Summary of correspondences
+
+#table(
+  columns: 3,
+  align: (left, left, left),
+  stroke: 0.6pt,
+  inset: 8pt,
+  table.header(
+    [*Free Fermion CFT*], [*Quantum Ising Chain*], [*Classical 2D Ising*],
+  ),
+  [Central charge $c = 1\/2$], [Gapless critical point], [Critical temperature $K_c$],
+  [Fermion $psi$ ($h = 1\/2$)], [Non-local (JW string)], [Domain wall],
+  [Energy $epsilon$ ($h = 1\/2$)], [$sigma^z sigma^z$ coupling], [Vertical bond energy],
+  [Spin $sigma$ ($h = 1\/16$)], [Order parameter $sigma^x$], [Local magnetization],
+  [NS sector], [Even fermion parity], [Untwisted sector],
+  [R sector], [Odd fermion parity], [Twisted sector],
+)
+
+The free fermion description provides exact solvability, while the spin/classical pictures connect to physical observables like magnetization and domain walls. The CFT framework unifies these perspectives through conformal symmetry and operator content.
