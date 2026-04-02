@@ -7,7 +7,7 @@
 In this chapter, our goal is to construct the Hilbert space in CFT. we will introduce the Virasoro algebra, which is a central extension of the Witt algebra, also the building block of Hilbert space. The Virasoro algebra plays a crucial role in two-dimensional conformal field theories (CFTs) and string theory. We will also discuss the concept of the central charge, which can be used to distinguish different CFTs.
 
 == Review of chapter 2
-From now on and later, we only focus on two-dimensional CFTs. In chapter 2, we introduced the stress-energy tensor, its properties, Ward identities, radial quantization, and definition of primary field. 
+From now on and later, we only focus on two-dimensional CFTs. In chapter 2, we introduced the stress-energy tensor, Ward identities, radial quantization, and definition of primary field. 
 
 === The stress-energy tensor
 In 2D CFT, we have stress-energy tensor $T(z)$ and $overline(T)(overline(z))$, which are holomorphic and anti-holomorphic, respectively. They satisfy the following properties:
@@ -190,7 +190,8 @@ $ T(z) arrow.r T^(prime)(omega) = (partial f)^(-2) [T(z) - frac(c, 12) {f, z}] $
 where ${f, z} = frac(f'''(z), f'(z)) - frac(3,2) (frac(f''(z),f'(z)))^2$ is the Schwarzian derivative. The transformation law of the stress-energy tensor under conformal transformations is different from that of primary fields, which indicates that the stress-energy tensor is not a primary field, but a quasi-primary field. 
 
 We could give an illustration on its physical meaning of central charge $c$, For example, we compute the free energy/Casimir energy of a CFT on a cylinder with circumference $L$ with conformal map $z arrow.r omega = frac(L, 2pi)ln(z)$, thus the stress-energy tensor on cylinder is, where $T_(p l)(z)=0$: 
-$ angle.l T_(c y l)(omega) angle.r = (frac(2pi, L))^2 [angle.l T(z) angle.r - frac(c, 24)] = -frac(c pi^2,6 L^2) $
+$ angle.l T_(c y l)(omega) angle.r = (frac(2pi, L))^2 [angle.l T(z) angle.r - frac(c, 24)] = -frac(c pi^2,6 L^2) , $
+which reminiscent of the Casimir effect that at infinite distance, the vacuum energy is zero, but if we introduce boundary at finite distance, the vacuum energy becomes negative. That is because we introduce a length scale $L$ into the system, which will truncate the energy mode into discrete spectrum.
 
 == Mode expansion and the Virasoro algebra
 Following the path we have dealt with Witt algebra, combined with *Ward identity, radial quantization*, we want to write down the corresponding infinitesimal change of field due to conformal transformation:
@@ -286,7 +287,7 @@ Thus by applying the negative modes $L_(-n)$ on the primary states, we can gener
 $ L_(-n)|h, overline(h) angle.r = L_(-n)L_0|h, overline(h) angle.r = (L_0L_(-n)+n L_(-n))|h, overline(h) angle.r = (h+n)|h, overline(h) angle.r $
 
 And we could review the $T phi$ correlation from the perspective of descendant fields, which is given by:
-$ T(z) phi(w, overline(w)) = sum_n frac(L_n phi(w, overline(w)), (z-w)^(n+2)) = frac(1, (z-w)^2) L_0 phi + frac(1, z-w) L_(-1) phi + L_2 phi + (z-omega) L_(-3) phi+ ...
+$ T(z) phi(w, overline(w)) = sum_n frac(L_n phi(w, overline(w)), (z-w)^(n+2)) = frac(1, (z-w)^2) L_0 phi + frac(1, z-w) L_(-1) phi + L_(-2) phi + (z-omega) L_(-3) phi+ ...
 \ = frac(h, (z-w)^2) phi(w, overline(w)) + frac(partial phi(w, overline(w)), z-w) + ... $
 
 From which we could identify:
@@ -362,6 +363,10 @@ $ |partial^2 sigma angle.r &equiv L_(-1)^2 |sigma angle.r, quad h = frac(1, 16) 
 Note that at level 2, there are two states, which are not orthogonal. Using the Virasoro algebra relation, one finds:
 $ angle.l sigma| L_2 L_(-1)^2 |sigma angle.r = angle.l sigma| (L_(-1)L_2 + 3 L_1 )L_(-1)|sigma angle.r = 3 angle.l sigma| L_1 L_(-1)|sigma angle.r = 3/8 $
 Eventually, one constructs the full Verma module by including all possible products of $L_(-n)$ operators.
+
+We could calculate the norm of each level-2 descendant state:
+$ angle.l sigma| L_(-1)^2 L_(-1)^2 |sigma angle.r = 9/16, quad angle.l sigma| L_2 L_(-2) |sigma angle.r = 1/4 , $
+thus this two vectors are identical.
 
 === Specific matrix elements
 

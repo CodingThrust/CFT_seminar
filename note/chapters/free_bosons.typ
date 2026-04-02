@@ -23,7 +23,7 @@ $ T(z) = -frac(1,2) :partial X(z) partial X(z): $
 $ overline(T)(overline(z)) = -frac(1,2) :overline(partial) X(overline(z)) overline(partial) X(overline(z)): $
 
 The normal ordering removes the self-contraction singularity:
-$ :partial X(z) partial X(z): = lim_(w -> z) (partial X(z) partial X(w) - angle.l partial X(z) partial X(w) angle.r) $
+$ :partial X(z) partial X(z): = lim_(w -> z) (partial X(z) partial X(w) - angle.l partial X(z) partial X(w) angle.r) = partial X(z) partial X(w) + frac(1, (z-w)^2) $
 
 === The $T (partial X)$ OPE
 
@@ -87,6 +87,18 @@ with $c = 1$.
   [$T(z) T(w)$],
   [$display(frac(1\/2, (z-w)^4) + frac(2 T(w), (z-w)^2) + frac(partial T(w), z-w)) + "regular"$],
 )
+
+=== Vertex operators
+Actually there are infinite primary fields in the free boson theory, called *vertex operators*:
+$ V_p(z, overline(z)) = :e^(i p X(z, overline(z))): $
+The conformal weights of the vertex operator are:
+$ h = frac(p^2, 2), quad overline(h) = frac(p^2, 2) $
+The vertex operators create states with momentum $p$ in the target space. The OPE of two vertex operators is:
+$ V_p(z, overline(z)) V_q(w, overline(w)) = (z-w)^(p q) (overline(z) - overline(w))^(p q) :e^(i (p+q) X(w, overline(w))): + "regular" $
+This shows that the vertex operators form a closed operator algebra under OPE, with the fusion rule:
+$ V_p times V_q = V_(p+q) . $
+
+It plays the role as charge carriers in the theory, and the OPE encodes charge conservation. We will see later 
 
 === Mode expansion
 
