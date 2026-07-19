@@ -7,12 +7,12 @@ $ S = frac(1,4pi) integral d^2z partial X overline(partial) X $
 === The boson propagator
 
 The equation of motion is $partial overline(partial) X = 0$, which means $X$ can be decomposed into holomorphic and anti-holomorphic parts. The two-point function (propagator) is:
-$ angle.l X(z, overline(z)) X(w, overline(w)) angle.r = -frac(1, 2) ln |z-w|^2 = -frac(1,2) ln(z-w) - frac(1,2) ln(overline(z) - overline(w)) $
+$ chevron.l X(z, overline(z)) X(w, overline(w)) chevron.r = -frac(1, 2) ln |z-w|^2 = -frac(1,2) ln(z-w) - frac(1,2) ln(overline(z) - overline(w)) $
 
 Taking derivatives, we obtain:
-$ angle.l partial X(z) partial X(w) angle.r = -frac(1, (z-w)^2) $
-$ angle.l overline(partial) X(overline(z)) overline(partial) X(overline(w)) angle.r = -frac(1, (overline(z) - overline(w))^2) $
-$ angle.l partial X(z) overline(partial) X(overline(w)) angle.r = 0 $
+$ chevron.l partial X(z) partial X(w) chevron.r = -frac(1, (z-w)^2) $
+$ chevron.l overline(partial) X(overline(z)) overline(partial) X(overline(w)) chevron.r = -frac(1, (overline(z) - overline(w))^2) $
+$ chevron.l partial X(z) overline(partial) X(overline(w)) chevron.r = 0 $
 
 Thus $partial X(z)$ is a holomorphic field with conformal weight $(h, overline(h)) = (1, 0)$.
 
@@ -23,7 +23,7 @@ $ T(z) = -frac(1,2) :partial X(z) partial X(z): $
 $ overline(T)(overline(z)) = -frac(1,2) :overline(partial) X(overline(z)) overline(partial) X(overline(z)): $
 
 The normal ordering removes the self-contraction singularity:
-$ :partial X(z) partial X(z): = lim_(w -> z) (partial X(z) partial X(w) - angle.l partial X(z) partial X(w) angle.r) = partial X(z) partial X(w) + frac(1, (z-w)^2) $
+$ :partial X(z) partial X(z): = lim_(w -> z) (partial X(z) partial X(w) - chevron.l partial X(z) partial X(w) chevron.r) = partial X(z) partial X(w) + frac(1, (z-w)^2) $
 
 === The $T (partial X)$ OPE
 
@@ -32,7 +32,7 @@ We derive the OPE of $T(z)$ with $partial X(w)$. Using Wick's theorem:
 $ T(z) partial X(w) &= -frac(1,2) :partial X(z) partial X(z): partial X(w) $
 
 Contracting $partial X(w)$ with the fields inside the normal ordering:
-$ T(z) partial X(w) &= -frac(1,2) (angle.l partial X(z) partial X(w) angle.r partial X(z) + partial X(z) angle.l partial X(z) partial X(w) angle.r) + "regular" \
+$ T(z) partial X(w) &= -frac(1,2) (chevron.l partial X(z) partial X(w) chevron.r partial X(z) + partial X(z) chevron.l partial X(z) partial X(w) chevron.r) + "regular" \
 &= -frac(1,2) dot 2 dot (-frac(1, (z-w)^2)) partial X(z) + "regular" \
 &= frac(partial X(z), (z-w)^2) + "regular" $
 
@@ -52,12 +52,12 @@ $ T(z) T(w) = frac(1,4) :partial X(z) partial X(z): :partial X(w) partial X(w): 
 Using Wick's theorem for products of normal-ordered operators:
 
 *Double contractions* (most singular term):
-$ frac(1,4) dot 2 dot angle.l partial X(z) partial X(w) angle.r^2 = frac(1,4) dot 2 dot frac(1, (z-w)^4) = frac(1\/2, (z-w)^4) $
+$ frac(1,4) dot 2 dot chevron.l partial X(z) partial X(w) chevron.r^2 = frac(1,4) dot 2 dot frac(1, (z-w)^4) = frac(1\/2, (z-w)^4) $
 
 This gives $c\/2 = 1\/2$, so $c = 1$.
 
 *Single contractions* (next order):
-$ frac(1,4) dot 4 dot angle.l partial X(z) partial X(w) angle.r :partial X(z) partial X(w): = -frac(1, (z-w)^2) :partial X(z) partial X(w): $
+$ frac(1,4) dot 4 dot chevron.l partial X(z) partial X(w) chevron.r :partial X(z) partial X(w): = -frac(1, (z-w)^2) :partial X(z) partial X(w): $
 
 Expanding around $w$:
 $ :partial X(z) partial X(w): = :partial X(w) partial X(w): + (z-w) :partial^2 X(w) partial X(w): + dots $

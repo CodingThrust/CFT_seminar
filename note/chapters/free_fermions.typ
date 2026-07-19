@@ -9,10 +9,10 @@ The free fermion theory has a central charge of $c = 1/2$.
 === The fermion propagator
 
 The equation of motion from the action is $overline(partial) psi = 0$, which means $psi(z)$ is holomorphic. The two-point function (propagator) of the free fermion is determined by the equation of motion and conformal symmetry. For a fermionic field with conformal weight $h = 1\/2$, we have:
-$ angle.l psi(z) psi(w) angle.r = frac(1, z - w) $
+$ chevron.l psi(z) psi(w) chevron.r = frac(1, z - w) $
 
 This can be derived from the path integral by noting that the action is quadratic in $psi$, and the propagator is the inverse of the kinetic operator. The anticommutating nature of fermions ensures the antisymmetry:
-$ angle.l psi(z) psi(w) angle.r = -angle.l psi(w) psi(z) angle.r $
+$ chevron.l psi(z) psi(w) chevron.r = -chevron.l psi(w) psi(z) chevron.r $
 
 === The $T psi$ OPE
 
@@ -23,10 +23,10 @@ $ T(z) psi(w) &= -frac(1,2) :psi(z) partial_z psi(z): psi(w) $
 To evaluate this, we use Wick's theorem. The normal-ordered product $:psi(z) partial_z psi(z):$ means we subtract all self-contractions. When we bring $psi(w)$ close, we need to contract it with the fields inside the normal ordering:
 
 $ T(z) psi(w) &= -frac(1,2) (:psi(z) partial_z psi(z): psi(w)) \
-&= -frac(1,2) (angle.l psi(z) psi(w) angle.r partial_z psi(z) - psi(z) angle.l partial_z psi(z) psi(w) angle.r) + "regular" $
+&= -frac(1,2) (chevron.l psi(z) psi(w) chevron.r partial_z psi(z) - psi(z) chevron.l partial_z psi(z) psi(w) chevron.r) + "regular" $
 
 Note the minus sign from anticommuting $psi(w)$ past $psi(z)$. Using the propagator:
-$ angle.l psi(z) psi(w) angle.r = frac(1, z-w), quad angle.l partial_z psi(z) psi(w) angle.r = -frac(1, (z-w)^2) $
+$ chevron.l psi(z) psi(w) chevron.r = frac(1, z-w), quad chevron.l partial_z psi(z) psi(w) chevron.r = -frac(1, (z-w)^2) $
 
 Substituting:
 $ T(z) psi(w) &= -frac(1,2) (frac(1, z-w) partial_z psi(z) - psi(z) dot (-frac(1, (z-w)^2))) + "regular" \
@@ -61,18 +61,18 @@ $ T(z) T(w) = frac(1,4) :psi(z) partial_z psi(z): :psi(w) partial_w psi(w): $
 
 Using Wick's theorem for the product of two normal-ordered operators, we need all possible contractions between the two normal-ordered products:
 
-$ T(z) T(w) = frac(1,4) [&angle.l psi(z) psi(w) angle.r angle.l partial_z psi(z) partial_w psi(w) angle.r \
-&- angle.l psi(z) partial_w psi(w) angle.r angle.l partial_z psi(z) psi(w) angle.r \
-&+ angle.l psi(z) psi(w) angle.r :partial_z psi(z) partial_w psi(w): \
-&- angle.l psi(z) partial_w psi(w) angle.r :partial_z psi(z) psi(w): \
-&- angle.l partial_z psi(z) psi(w) angle.r :psi(z) partial_w psi(w): \
-&+ angle.l partial_z psi(z) partial_w psi(w) angle.r :psi(z) psi(w):] + "regular" $
+$ T(z) T(w) = frac(1,4) [&chevron.l psi(z) psi(w) chevron.r chevron.l partial_z psi(z) partial_w psi(w) chevron.r \
+&- chevron.l psi(z) partial_w psi(w) chevron.r chevron.l partial_z psi(z) psi(w) chevron.r \
+&+ chevron.l psi(z) psi(w) chevron.r :partial_z psi(z) partial_w psi(w): \
+&- chevron.l psi(z) partial_w psi(w) chevron.r :partial_z psi(z) psi(w): \
+&- chevron.l partial_z psi(z) psi(w) chevron.r :psi(z) partial_w psi(w): \
+&+ chevron.l partial_z psi(z) partial_w psi(w) chevron.r :psi(z) psi(w):] + "regular" $
 
 The relevant contractions are:
-$ angle.l psi(z) psi(w) angle.r &= frac(1, z-w) $
-$ angle.l partial_z psi(z) psi(w) angle.r &= partial_z frac(1, z-w) = -frac(1, (z-w)^2) $
-$ angle.l psi(z) partial_w psi(w) angle.r &= partial_w frac(1, z-w) = frac(1, (z-w)^2) $
-$ angle.l partial_z psi(z) partial_w psi(w) angle.r &= partial_z partial_w frac(1, z-w) = -frac(2, (z-w)^3) $
+$ chevron.l psi(z) psi(w) chevron.r &= frac(1, z-w) $
+$ chevron.l partial_z psi(z) psi(w) chevron.r &= partial_z frac(1, z-w) = -frac(1, (z-w)^2) $
+$ chevron.l psi(z) partial_w psi(w) chevron.r &= partial_w frac(1, z-w) = frac(1, (z-w)^2) $
+$ chevron.l partial_z psi(z) partial_w psi(w) chevron.r &= partial_z partial_w frac(1, z-w) = -frac(2, (z-w)^3) $
 
 *Double contraction terms* (most singular):
 $ frac(1,4) [frac(1, z-w) dot (-frac(2, (z-w)^3)) - frac(1, (z-w)^2) dot (-frac(1, (z-w)^2))] = frac(1,4) [-frac(2, (z-w)^4) + frac(1, (z-w)^4)] = -frac(1, 4(z-w)^4) $
@@ -126,9 +126,9 @@ $ {psi_r, psi_s} = delta_(r+s, 0) $
 The Virasoro generators can be expressed in terms of fermion modes:
 $ L_n = frac(1,2) sum_r (r + frac(n,2)) :psi_(n-r) psi_r: $
 
-In the NS sector, the vacuum $|0 angle.r$ satisfies:
-$ psi_r |0 angle.r = 0 quad "for" r > 0 $
-$ L_n |0 angle.r = 0 quad "for" n >= -1 $
+In the NS sector, the vacuum $|0 chevron.r$ satisfies:
+$ psi_r |0 chevron.r = 0 quad "for" r > 0 $
+$ L_n |0 chevron.r = 0 quad "for" n >= -1 $
 
 == Correspondence with the Ising model
 

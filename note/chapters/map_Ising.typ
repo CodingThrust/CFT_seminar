@@ -41,7 +41,7 @@ This transfer-matrix/quantum-circuit correspondence provides a powerful dictiona
     [Partition function $Z = tr(T^N)$], [Imaginary-time path integral],
     [Transfer matrix $T$], [Imaginary-time evolution $e^(-tau hat(H))$],
     [Row-to-row transfer], [One layer of quantum circuit],
-    [Classical spins $sigma_i = plus.minus 1$], [Computational basis $|sigma_i angle.r$],
+    [Classical spins $sigma_i = plus.minus 1$], [Computational basis $|sigma_i chevron.r$],
     [Inverse temperature $beta$], [Imaginary time $tau$],
   )
 ]
@@ -52,7 +52,7 @@ We now illustrate this correspondence concretely for the 2D classical Ising mode
 
 Consider a square lattice with classical Ising spins $sigma_i = plus.minus 1$ placed on each vertex. The Hamiltonian is
 
-$ H = -J sum_(angle.l i, j angle.r) sigma_i sigma_j, $
+$ H = -J sum_(chevron.l i, j chevron.r) sigma_i sigma_j, $
 
 where the sum is over nearest-neighbor pairs. We split the interactions into _horizontal_ bonds (within a row) and _vertical_ bonds (between adjacent rows). Denoting the spins in row $n$ collectively as $bold(sigma)_n = (sigma_(n,1), sigma_(n,2), dots, sigma_(n,L))$, the partition function on an $N times L$ lattice with periodic boundary conditions is
 
@@ -130,13 +130,13 @@ where $beta_h = beta J_h$ and $beta_v = beta J_v$ are the horizontal and vertica
 
 The transfer matrix $T$ maps one row of spins to the next. Its matrix elements are
 
-$ angle.l bold(sigma)^prime | T | bold(sigma) angle.r = exp(beta_h sum_j sigma^prime_j sigma^prime_(j+1) + beta_v sum_j sigma_j sigma^prime_j). $
+$ chevron.l bold(sigma)^prime | T | bold(sigma) chevron.r = exp(beta_h sum_j sigma^prime_j sigma^prime_(j+1) + beta_v sum_j sigma_j sigma^prime_j). $
 
 The crucial insight is that we can factorize $T$ into a product of two simpler pieces as in figure 2:
 
 $ T = T_"vertical" dot T_"horizontal" = product_j e^(beta_v sigma_j sigma^prime_j) dot product_j e^(beta_h sigma^prime_j sigma^prime_(j+1)). $
 
-Now we promote the classical spins to quantum operators. In the computational basis $|sigma angle.r$ (eigenstates of $hat(Z)$), we identify:
+Now we promote the classical spins to quantum operators. In the computational basis $|sigma chevron.r$ (eigenstates of $hat(Z)$), we identify:
 
 - *Diagonal interaction (vertical bond):* The Boltzmann weight $e^(beta_v sigma_j sigma_(j+1)^prime)$ acts _between_ two adjacent rows. When interpreted as a matrix in the $sigma, sigma^prime$ basis, it takes the form:
 
@@ -466,7 +466,7 @@ Physical observables are mapped as follows:
 $ f = -frac(1,beta) frac(ln Z,N) =-frac(1,beta) ln T prop E_0 =  -frac(1,beta) ln lambda_0, $
 
 where $lambda_0$ is the largest eigenvalue of $T$, and the ground-state energy $E_0$ of the quantum Hamiltonian is related to $lambda_0$.
-- *Correlation function* $angle.l sigma_i sigma_j angle.r$ in the classical model (note here we need to insert two spin operators among space directions) corresponds to $angle.l hat(Z)_i hat(Z)_j angle.r$ in the quantum model.
+- *Correlation function* $chevron.l sigma_i sigma_j chevron.r$ in the classical model (note here we need to insert two spin operators among space directions) corresponds to $chevron.l hat(Z)_i hat(Z)_j chevron.r$ in the quantum model.
 - *Phase diagram:* The 2D classical Ising model has a ferromagnetic (FM) to paramagnetic (PM) phase transition at the critical coupling $K_c = frac(1,2)log(1 + sqrt(2))$. Under the mapping, this corresponds to the quantum phase transition at $(h\/J)_c = 1$ in the transverse-field Ising chain, which is described by the Ising CFT with central charge $c = 1\/2$.
 
 == The phase diagram and two lines
@@ -511,8 +511,8 @@ $ sinh^2(2 K_c) = 1 quad arrow.r.double quad K_c = frac(1,2) ln(1 + sqrt(2)) app
 
 The full phase diagram has:
 
-- *Ferromagnetic (FM) phase:* Above and to the right of the self-dual curve; large $beta_h, beta_v$ $arrow.r$ ordered, $angle.l hat(Z) angle.r eq.not 0$.
-- *Paramagnetic (PM) phase:* Below and to the left of the self-dual curve; small $beta_h, beta_v$ $arrow.r$ disordered, $angle.l hat(Z) angle.r = 0$.
+- *Ferromagnetic (FM) phase:* Above and to the right of the self-dual curve; large $beta_h, beta_v$ $arrow.r$ ordered, $chevron.l hat(Z) chevron.r eq.not 0$.
+- *Paramagnetic (PM) phase:* Below and to the left of the self-dual curve; small $beta_h, beta_v$ $arrow.r$ disordered, $chevron.l hat(Z) chevron.r = 0$.
 - *Critical line:* The self-dual curve $sinh(2 beta_h) sinh(2 beta_v) = 1$ separates the two phases. Every point on this curve is a critical point belonging to the Ising CFT universality class with central charge $c = 1\/2$.
 
 // ========== FIGURE 3: Phase diagram ==========
