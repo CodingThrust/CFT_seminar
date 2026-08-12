@@ -41,7 +41,7 @@ This transfer-matrix/quantum-circuit correspondence provides a powerful dictiona
     [Partition function $Z = tr(T^N)$], [Imaginary-time path integral],
     [Transfer matrix $T$], [Imaginary-time evolution $e^(-tau hat(H))$],
     [Row-to-row transfer], [One layer of quantum circuit],
-    [Classical spins $sigma_i = plus.minus 1$], [Computational basis $|sigma_i chevron.r$],
+    [Classical spins $sigma_i = plus.minus 1$], [Computational basis $|sigma_i angle.r$],
     [Inverse temperature $beta$], [Imaginary time $tau$],
   )
 ]
@@ -52,7 +52,7 @@ We now illustrate this correspondence concretely for the 2D classical Ising mode
 
 Consider a square lattice with classical Ising spins $sigma_i = plus.minus 1$ placed on each vertex. The Hamiltonian is
 
-$ H = -J sum_(chevron.l i, j chevron.r) sigma_i sigma_j, $
+$ H = -J sum_(angle.l i, j angle.r) sigma_i sigma_j, $
 
 where the sum is over nearest-neighbor pairs. We split the interactions into _horizontal_ bonds (within a row) and _vertical_ bonds (between adjacent rows). Denoting the spins in row $n$ collectively as $bold(sigma)_n = (sigma_(n,1), sigma_(n,2), dots, sigma_(n,L))$, the partition function on an $N times L$ lattice with periodic boundary conditions is
 
@@ -130,13 +130,13 @@ where $beta_h = beta J_h$ and $beta_v = beta J_v$ are the horizontal and vertica
 
 The transfer matrix $T$ maps one row of spins to the next. Its matrix elements are
 
-$ chevron.l bold(sigma)^prime | T | bold(sigma) chevron.r = exp(beta_h sum_j sigma^prime_j sigma^prime_(j+1) + beta_v sum_j sigma_j sigma^prime_j). $
+$ angle.l bold(sigma)^prime | T | bold(sigma) angle.r = exp(beta_h sum_j sigma^prime_j sigma^prime_(j+1) + beta_v sum_j sigma_j sigma^prime_j). $
 
 The crucial insight is that we can factorize $T$ into a product of two simpler pieces as in figure 2:
 
 $ T = T_"vertical" dot T_"horizontal" = product_j e^(beta_v sigma_j sigma^prime_j) dot product_j e^(beta_h sigma^prime_j sigma^prime_(j+1)). $
 
-Now we promote the classical spins to quantum operators. In the computational basis $|sigma chevron.r$ (eigenstates of $hat(Z)$), we identify:
+Now we promote the classical spins to quantum operators. In the computational basis $|sigma angle.r$ (eigenstates of $hat(Z)$), we identify:
 
 - *Diagonal interaction (vertical bond):* The Boltzmann weight $e^(beta_v sigma_j sigma_(j+1)^prime)$ acts _between_ two adjacent rows. When interpreted as a matrix in the $sigma, sigma^prime$ basis, it takes the form:
 
@@ -466,23 +466,37 @@ Physical observables are mapped as follows:
 $ f = -frac(1,beta) frac(ln Z,N) =-frac(1,beta) ln T prop E_0 =  -frac(1,beta) ln lambda_0, $
 
 where $lambda_0$ is the largest eigenvalue of $T$, and the ground-state energy $E_0$ of the quantum Hamiltonian is related to $lambda_0$.
-- *Correlation function* $chevron.l sigma_i sigma_j chevron.r$ in the classical model (note here we need to insert two spin operators among space directions) corresponds to $chevron.l hat(Z)_i hat(Z)_j chevron.r$ in the quantum model.
-- *Phase diagram:* The 2D classical Ising model has a ferromagnetic (FM) to paramagnetic (PM) phase transition at the critical coupling $K_c = frac(1,2)log(1 + sqrt(2))$. Under the mapping, this corresponds to the quantum phase transition at $(h\/J)_c = 1$ in the transverse-field Ising chain, which is described by the Ising CFT with central charge $c = 1\/2$.
+- *Correlation function* $angle.l sigma_i sigma_j angle.r$ in the classical model (note here we need to insert two spin operators among space directions) corresponds to $angle.l hat(Z)_i hat(Z)_j angle.r$ in the quantum model.
+- *Phase diagram:* On the microscopically isotropic line $beta_h = beta_v = K$, the 2D classical Ising model has a ferromagnetic (FM) to paramagnetic (PM) phase transition at $K_c = frac(1,2)log(1 + sqrt(2))$. In the Hamiltonian (strongly anisotropic) limit, the classical criticality condition instead becomes $(h\/J)_c = 1$ for the transverse-field Ising chain. These are two different parameterizations of the same Ising universality class, with central charge $c = 1\/2$.
 
-== The phase diagram and two lines
+== Self-duality, spacetime isotropy, and criticality
 
-The 2D classical Ising model with different horizontal and vertical couplings ($beta_h eq.not beta_v$) has a rich phase diagram. Two important lines in the $(beta_h, beta_v)$ plane are:
+Three notions must be kept separate. We restrict here to the uniform, zero-field, ferromagnetic square-lattice Ising model, $beta_h, beta_v > 0$, and take the horizontal and vertical lattice spacings to be equal.
 
-1. *Self-dual line (Kramers-Wannier duality):* The 2D Ising model satisfies a remarkable duality. Under the Kramers-Wannier transformation, the partition function maps to that of a dual model with couplings $tilde(beta)_h, tilde(beta)_v$ satisfying
+1. *Self-dual locus (a microscopic duality condition).* Define the dual of a coupling $K$ by
+   $ e^(-2K^*) = tanh K, quad "equivalently" quad sinh(2K) sinh(2K^*) = 1. $
+   Kramers-Wannier duality exchanges horizontal bonds with dual vertical bonds and vice versa:
    $ sinh(2 beta_h) sinh(2 tilde(beta)_v) = 1, quad sinh(2 beta_v) sinh(2 tilde(beta)_h) = 1. $
-   The system is _self-dual_ when $(beta_h, beta_v) = (tilde(beta)_h, tilde(beta)_v)$, which gives the condition:
+   Thus $(tilde(beta)_h, tilde(beta)_v) = (beta_v^*, beta_h^*)$. Requiring the dual model to have the same oriented couplings gives
    $ sinh(2 beta_h) sinh(2 beta_v) = 1. $
-   This defines a curve in the $(beta_h, beta_v)$ plane. Since the phase transition must be preserved under duality, and there is only one transition, the *critical line must lie exactly on the self-dual curve*.
+   This statement concerns invariance of the microscopic Boltzmann weights under duality; by definition it says nothing about a divergent correlation length.
 
-2. *Isotropic spacetime line:* This is simply the diagonal $beta_h = beta_v$, corresponding to equal couplings in both directions.
+2. *Microscopic spacetime-isotropic locus (a rotation condition).* Exchanging the two lattice directions is a symmetry when
+   $ beta_h = beta_v. $
+   This is the diagonal of the coupling plane. It is not a phase boundary: varying $K$ along $(beta_h,beta_v)=(K,K)$ passes from the PM phase through one critical point and then into the FM phase. Notice especially that $beta_h=beta_v$ is not the same equation as $beta_h=beta_v^*$. The latter is equivalent to the self-dual equation above.
 
-The *critical point of the isotropic spacetime model* is the intersection of these two lines: setting $beta_h = beta_v = K$ in the self-dual condition gives
+3. *Critical locus (an infrared condition).* Criticality means that the bulk correlation length diverges, $xi arrow.r infinity$, or equivalently that the transfer-matrix gap closes in the thermodynamic limit. Kramers-Wannier duality maps the critical locus to itself, but duality alone does not in general prove that every self-dual point is critical. For this particular clean Ising model, the exact solution (together with the uniqueness of the FM--PM transition in the positive-coupling quadrant) gives
+   $ cal(C)_"crit" = { (beta_h,beta_v): sinh(2 beta_h) sinh(2 beta_v)=1 }. $
+   Hence the self-dual and critical loci coincide _as subsets of this model's coupling plane_, although their definitions and physical content are different.
+
+The microscopic spacetime-isotropic locus intersects the critical locus only once. Setting $beta_h=beta_v=K$ gives
 $ sinh^2(2 K_c) = 1 quad arrow.r.double quad K_c = frac(1,2) ln(1 + sqrt(2)) approx 0.4407. $
+
+There is a second, continuum-level use of ``spacetime isotropy.'' Every point on the anisotropic critical curve has the Ising CFT as its infrared fixed point. Its bare anisotropy appears as a nonuniversal velocity, or equivalently as a background metric, and can be removed by rescaling one coordinate. This emergent isotropy after coordinate rescaling does not imply the microscopic equality $beta_h=beta_v$.
+
+Finally, in the Hamiltonian limit used above,
+$ beta_h = tau J + O(tau^2), quad beta_v^* = tau h + O(tau^2), $
+so the self-dual/critical condition becomes $beta_h=beta_v^*$, and therefore $J=h$ as $tau arrow.r 0$. This is the quantum critical condition. It must not be confused with the microscopic spacetime-isotropic condition $beta_h=beta_v$: the Hamiltonian limit instead has $beta_h arrow.r 0$ and $beta_v arrow.r infinity$.
 
 #v(0.5em)
 #align(center)[
@@ -494,26 +508,30 @@ $ sinh^2(2 K_c) = 1 quad arrow.r.double quad K_c = frac(1,2) ln(1 + sqrt(2)) app
     table.header(
       [*Concept*], [*Definition*], [*Physical meaning*],
     ),
-    [Self-dual line \ (critical line)], 
+    [Self-dual locus],
     [$sinh(2 beta_h) sinh(2 beta_v) = 1$], 
-    [Hyperbolic curve; system maps to itself under \ Kramers-Wannier duality. Phase transition \ occurs here $arrow.r$ Ising CFT ($c = 1\/2$).],
+    [Fixed locus of Kramers-Wannier duality; \ a microscopic algebraic condition.],
     
-    [Isotropic line], 
+    [Microscopic spacetime-isotropic locus],
     [$beta_h = beta_v$], 
-    [Diagonal line; equal horizontal and vertical \ couplings (standard square lattice Ising).],
+    [Exchange symmetry of the two lattice directions; \ not a phase boundary.],
     
-    [Critical point \ (isotropic model)], 
-    [$K_c = frac(1,2) ln(1 + sqrt(2))$], 
-    [Intersection of the two lines; the familiar \ critical temperature of the 2D Ising model.],
+    [Critical locus],
+    [$xi arrow.r infinity$],
+    [Infrared condition. For this model it coincides \ with the self-dual locus and flows to Ising CFT.],
+
+    [Isotropic critical point],
+    [$(beta_h,beta_v)=(K_c,K_c)$],
+    [Unique intersection of the microscopic isotropic \ and critical loci.],
   )
 ]
 #v(0.5em)
 
 The full phase diagram has:
 
-- *Ferromagnetic (FM) phase:* Above and to the right of the self-dual curve; large $beta_h, beta_v$ $arrow.r$ ordered, $chevron.l hat(Z) chevron.r eq.not 0$.
-- *Paramagnetic (PM) phase:* Below and to the left of the self-dual curve; small $beta_h, beta_v$ $arrow.r$ disordered, $chevron.l hat(Z) chevron.r = 0$.
-- *Critical line:* The self-dual curve $sinh(2 beta_h) sinh(2 beta_v) = 1$ separates the two phases. Every point on this curve is a critical point belonging to the Ising CFT universality class with central charge $c = 1\/2$.
+- *Ferromagnetic (FM) phase:* $sinh(2 beta_h)sinh(2 beta_v)>1$; the $bb(Z)_2$ spin-flip symmetry is spontaneously broken in the thermodynamic limit.
+- *Paramagnetic (PM) phase:* $sinh(2 beta_h)sinh(2 beta_v)<1$; the $bb(Z)_2$ symmetry is unbroken.
+- *Critical locus:* $sinh(2 beta_h)sinh(2 beta_v)=1$. Every point belongs to the Ising CFT universality class with $c=1\/2$, but only $(K_c,K_c)$ is microscopically invariant under exchanging the two spacetime lattice directions.
 
 // ========== FIGURE 3: Phase diagram ==========
 #let fig3 = {
@@ -537,30 +555,30 @@ The full phase diagram has:
     let curve-y = y - 1.5 * t * (1.0 - t)
     pts.push((curve-x, curve-y))
   }
-  // Draw the self-dual (critical) curve
+  // Draw the self-dual locus, which equals the exact critical locus here
   for i in range(pts.len() - 1) {
     line(pts.at(i), pts.at(i + 1), stroke: 2pt + blue)
   }
 
-  // Isotropic line: βh = βv (diagonal)
+  // Microscopic spacetime-isotropic locus: βh = βv (diagonal)
   line((0.0, 0.0), (4.8, 4.8), stroke: (paint: red, thickness: 1.5pt, dash: "dashed"))
   
-  // Critical point (intersection) - approximately at (2, 2) on this scale
-  let kc = 2.0
+  // The curve is schematic; its diagonal intersection occurs at t = 1/2.
+  let kc = 2.175
   circle((kc, kc), radius: 0.12, fill: black)
-  content((kc + 0.8, kc + 0.3), text(size: 8pt)[$K_c = frac(1,2)ln(1+sqrt(2))$])
+  content((kc + 1.0, kc - 0.35), text(size: 8pt)[$K_c = frac(1,2)ln(1+sqrt(2))$])
 
   // FM region label
-  content((3.8, 4.2), text(size: 12pt, weight: "bold", fill: red)[FM])
+  content((4.5, 4.3), text(size: 12pt, weight: "bold", fill: red)[FM])
 
   // PM region label
   content((1.2, 1.2), text(size: 12pt, weight: "bold", fill: rgb("#2196F3"))[PM])
 
-  // Critical line label
-  content((0.8, 4.0), text(size: 8pt, fill: blue)[self-dual curve \ (critical line)])
+  // Self-dual/critical locus label
+  content((0.8, 4.0), text(size: 8pt, fill: blue)[self-dual locus \ = exact critical locus])
   
-  // Isotropic line label
-  content((4.5, 3.0), text(size: 8pt, fill: red)[isotropic line \ $beta_h = beta_v$])
+  // Microscopic spacetime-isotropic locus label
+  content((4.1, 3.2), text(size: 8pt, fill: red)[microscopic isotropy \ $beta_h = beta_v$])
 
   // Arrows indicating RG flow (schematic)
   // Into FM
@@ -573,7 +591,7 @@ The full phase diagram has:
 
 #figure(
   canvas(length: 0.8cm, fig3),
-  caption: [Phase diagram of the 2D classical Ising model in the $beta_h$--$beta_v$ plane. The blue curve is the self-dual line $sinh(2 beta_h) sinh(2 beta_v) = 1$, which is also the critical line separating the ferromagnetic (FM) and paramagnetic (PM) phases. The red dashed line is the isotropic line $beta_h = beta_v$. Their intersection (black dot) is the critical point of the isotropic model, $K_c = frac(1,2)ln(1+sqrt(2))$. The entire critical line is described by the Ising CFT with $c = 1\/2$. Gray arrows indicate schematic RG flow directions.]
+  caption: [Schematic phase diagram of the zero-field ferromagnetic square-lattice Ising model in the $beta_h$--$beta_v$ plane. Blue denotes the self-dual locus. The exact solution shows that, for this model, the same set is also the critical locus separating the FM and PM phases; this equality is a result, not a definition. Red denotes the microscopic spacetime-isotropic locus $beta_h=beta_v$, which crosses the critical locus only at $(K_c,K_c)$, where $K_c=frac(1,2)ln(1+sqrt(2))$. All points on the critical locus have the Ising CFT as their infrared theory after a nonuniversal coordinate rescaling. Gray arrows indicate schematic RG flows.]
 ) <fig:phase>
 
 == Remarks
